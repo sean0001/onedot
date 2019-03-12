@@ -1,0 +1,34 @@
+﻿@using one.Service;
+@model ViewRolesOfUser
+@{
+    var BindedData = (IEnumerable<OSelectListItem>)ViewBag.Roles;
+}
+
+
+<script type="text/kendo" id="RolesTemplate">
+    <div>
+        <h3>#:Text#</h3>
+        <p>#:Value#</p>
+    </div>
+</script>
+
+<div id="oneGridPopwinWrap">
+    <div style="width:380px;">
+        @(
+     Html.Kendo().MultiSelectFor(m => m).Name("Roles")
+    .DataTextField("Text")
+    .DataValueField("Value")
+
+    .HtmlAttributes(new
+    {
+        style = "max-width:400px; font-size:1.2em;margin:auto;"
+    })
+    .BindTo(BindedData)
+    .HighlightFirst(true)
+
+        )
+    </div>
+
+</div>
+
+

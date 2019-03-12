@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "RoleFunc";
+    Layout = "~/Areas/DashBoard/Views/Shared/_LayoutDash.cshtml";
+}
+
+
+
+<div class="k-toolbar">
+    <div style="line-height:2.6em;">
+
+
+        <label>
+            &nbsp;&nbsp;&nbsp;&nbsp; 角色 ：
+        </label>
+        @(Html.Kendo().DropDownList()
+            .Name("SelectRoles")
+            .DataValueField("Value")
+            .DataTextField("Text")
+            .Events(evt => evt.Change("getMenuTree"))
+            .HtmlAttributes(new { style = "font-size:1.2em;" })
+            .BindTo((IEnumerable<one.Service.OSelectListItem>)one.Service.CommonData.Roles).Animation(true)
+        )
+
+
+
+        <label>
+            &nbsp;&nbsp;&nbsp;&nbsp; 选择模块 ：
+        </label>
+        @(Html.Kendo().DropDownList()
+            .Name("SelectApplicationModule")
+            .DataValueField("Id")
+            .DataTextField("Text")
+            .Events(evt => evt.Change("getMenuTree"))
+            .HtmlAttributes(new { style = "font-size:1.2em;" })
+            .BindTo((IEnumerable<one.Service.OSelectListItem>)one.Service.CommonData.ApplicationModule).Animation(true)
+        )
+
+
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+       
+        <button type="button" class="k-button" onclick="submitTree()">
+            <i class="icon-save"></i>&nbsp;&nbsp;@(one.Res.Lang.Btn_Save)&nbsp;&nbsp;
+        </button>
+
+
+    </div>
+    </div>
+    
+
+
+
+
+
+<div class="menu-tree" style="padding:10px ; width:auto; float:left;">
+
+    @Html.Action("getMenuTree", "manager",new { Area = "dashBoard",moduleId = 1})
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+    function getMenuTree() {
+        var _url = "@Url.Action("getMenuTree", "manager", new { Area = "dashBoard"})",
+             _data = {
+                 moduleId: $('#SelectApplicationModule').data('kendoDropDownList').value(),
+                 roleId: $('#SelectRoles').data('kendoDropDownList').value()
+             };
+
+        $.majax({
+            url: _url,
+            data: _data,
+            success: function (data, tx, idx) {
+                if (data) {
+                    $(".menu-tree").html(data);
+                }
+            }
+        });
+
+    }
+
+
+
+    function checknum() {
+        var checked = $.map($("#TreeViewMenu :checked"), function (checkbox) {
+            return parseInt($(checkbox).val());
+        });
+        return checked;
+     }
+
+
+    function submitTree() {
+
+        if (!confirm(oneDotCultures["confirmSubmit"]))
+            return false;
+
+
+        var _url = "@Url.Action("update_ModelTreeRoles", "manager", new { Area = "dashBoard"})",
+            _data = {
+                chked: checknum(),
+                moduleId: $('#SelectApplicationModule').data('kendoDropDownList').value(),
+                roleId: $('#SelectRoles').data('kendoDropDownList').value()
+            };
+
+        $.majax({
+            url: _url,
+            data: _data,
+            dataType:"json",
+            type: "post",
+            success: function () {
+                toastr.success(oneDotCultures['operationSuccess']);
+            }
+        });
+
+    }
+
+    
+
+</script>
+
+
+
+
+
+
+
+

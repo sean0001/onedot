@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Site made with onedot Website Builder v4.2.3, http://www.onedot.red:8008 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="onedot v4.2.3, onedot.red">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="~/Scripts/assets/images/logo.png" type="image/x-icon">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="~/Scripts/assets/bootstrap-material-design-font/css/material.css">
+    <link rel="stylesheet" href="~/Scripts/assets/et-line-font-plugin/style.css">
+
+
+    @*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&subset=latin">*@
+
+    <link rel="stylesheet" href="~/Scripts/assets/tether/tether.min.css">
+    <link rel="stylesheet" href="~/Scripts/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Scripts/assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="~/Scripts/assets/socicon/css/styles.css">
+    <link rel="stylesheet" href="~/Scripts/assets/animate.css/animate.min.css">
+    <link rel="stylesheet" href="~/Scripts/assets/theme/css/style.css">
+    <link rel="stylesheet" href="~/Scripts/assets/mobirise/css/mbr-additional.css" type="text/css">
+
+    @RenderSection("Styles", required: false)
+</head>
+
+
+<body class="rtl">
+
+    @{Html.RenderPartial("_HeaderMenu");}
+
+    @RenderBody()
+
+   @{Html.RenderPartial("_footer");}
+ 
+
+    <script src="@(Url.Content("~/Scripts/assets/web/assets/jquery/jquery.min.js"))"></script>
+    <script src="@(Url.Content("~/Scripts/assets/tether/tether.min.js"))"></script>
+    <script src="@(Url.Content("~/Scripts/assets/bootstrap/js/bootstrap.min.js"))"></script>
+    <script src="@(Url.Content("~/Scripts/assets/smooth-scroll/smooth-scroll.js"))"></script>
+    <script src="@(Url.Content("~/Scripts/assets/dropdown/js/script.min.js"))"></script>
+    <script src="@(Url.Content("~/Scripts/assets/touch-swipe/jquery.touch-swipe.min.js"))"></script>
+    <script src="@(Url.Content("~/Scripts/assets/viewport-checker/jquery.viewportchecker.js"))"></script>
+    <script src="@(Url.Content("~/Scripts/assets/jarallax/jarallax.js"))"></script>
+    <script src="@(Url.Content("~/Scripts/assets/theme/js/script.js"))"></script>
+    <script src="@(Url.Content("~/Scripts/assets/formoid/formoid.min.js"))"></script>
+    <input name="~/Scripts/animation" type="hidden">
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+﻿@{
+    bool admin = false;
+    try
+    {
+        //admin =  User.IsInRole("admin");
+        if (Request.IsAuthenticated)
+        {
+            admin = true;
+        }
+    }
+    catch (Exception)
+    {
+    }
+}
+
+
+
+
+@using (Html.BeginForm("LogOff", "Account", 
+    new { area = string.Empty }, FormMethod.Post, 
+    new { id = "logoutForm", style = "display:none;" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+
+
+@if (Request.IsAuthenticated)
+{
+    <text>
+        <li class="nav-item nav-btn" aria-expanded="false">
+            <a class="nav-link btn btn-white btn-white-outline" href="@(Url.Action("userBase", "UserCenter", new { area = string.Empty}))">
+                <span class="badge">@(User.Identity.Name) </span>
+            </a>
+        </li>
+@if (admin)
+{
+    <li class="nav-item">
+        @Html.ActionLink("后台管理", "desktop", "dash", new { area = "dashboard" }, new { @class = "nav-link link ", title = "设置系统信息！" })
+    </li>
+    
+}
+
+
+<li  class="nav-item">
+    <a class="nav-link link" href="javascript:document.getElementById('logoutForm').submit()">登录注销</a>
+</li>
+
+    </text>
+}
+else
+{
+
+    @*<li class="nav-item" >
+        @Html.ActionLink("用户注册", "Register", "Account",
+        routeValues: new { area = string.Empty },
+        htmlAttributes: new { @class = "nav-link link", id = "registerLink" })
+    </li>*@
+    <li class="nav-item">
+        @Html.ActionLink("会员登录", "Login", "Account",
+        routeValues: new { area = string.Empty },
+        htmlAttributes: new { @class = "nav-link link", id = "loginLink" })
+    </li>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

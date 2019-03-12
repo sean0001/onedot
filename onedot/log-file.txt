@@ -1,0 +1,2 @@
+[Footer]
+2017-06-13 15:25:33,236 [14] INFO  InforFile [(null)] <(null)> - ╣зр╩╢н╡Бйт

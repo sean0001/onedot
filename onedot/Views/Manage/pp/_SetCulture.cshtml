@@ -1,0 +1,31 @@
+﻿
+
+
+
+<div class="form-group" style="min-height:2em;">
+
+    <label for="OldPassword" class="col-sm-2 control-label">选择语言</label>
+
+    <div class="col-sm-10">
+        @(Html.Kendo().DropDownList()
+        .Name("SetCulture")
+        .Events(evt => evt.Change("function(){$.lang(this.value()); window.location.reload();}")
+        .DataBound("function(){ this.value($.lang());}"))
+        .BindTo(new List<SelectListItem>() {
+            new SelectListItem(){
+                Value = "zh-CN",
+                Text ="中文(Chinese)"
+            },
+
+            new SelectListItem(){
+                Value = "en-US",
+                Text ="英文(English)"
+            }
+        })
+        )
+
+    </div>
+
+</div>
+
+

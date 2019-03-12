@@ -1,0 +1,22 @@
+﻿@model one.Service.ViewRole
+
+
+<div id="oneGridPopwinWrap" style="padding:60px;">
+    <div style="float:left;margin:-42px 25px -54px -71px;">
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.RoleName))
+        </div>
+        <div class="k-edit-field">
+            @(Html.TextBoxFor(a => a.RoleName, new { @class = "k-textbox" }))
+        </div>
+
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.Describe))
+        </div>
+        <div class="k-edit-field">
+
+            @(Html.TextAreaFor(a => a.Describe, new { @class = "k-textbox", style = "min-height:80px;padding:4px;" }))
+        </div>
+    </div>
+</div>

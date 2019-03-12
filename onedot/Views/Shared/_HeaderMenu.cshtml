@@ -1,0 +1,108 @@
+﻿
+
+<section class="menu cid-qurPeGOeVH" once="menu" id="menu1-0" data-rv-view="362">
+
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent  navbar-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="http://www.onedot.red:8008">
+                        <img src="~/Scripts/assets/images/logo.png" alt="OneDot.Red" media-simple="true" style="height: 3.8rem;">
+                    </a>
+                </span>
+                <span class="navbar-caption-wrap">
+                    <a class="navbar-caption text-white display-4" href="http://www.onedot.red:8008">
+
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="@(Url.Action("index","home",new { area =string.Empty}))">
+                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                        主 页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="@(Url.Action("pricing","home",new { area =string.Empty}))">
+                        <span class="mbri-sale mbr-iconfont mbr-iconfont-btn"></span>
+                        价格体系
+                    </a>
+                </li>
+
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link link dropdown-toggle text-white display-4" data-toggle="dropdown-submenu" href="@(Url.Action("index","home",new { area =string.Empty}))" aria-expanded="false">
+                        <span class="mbri-magic-stick mbr-iconfont mbr-iconfont-btn"></span>
+                        解决方案
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item text-white display-4" href="@(Url.Action("index","home",new { area =string.Empty}))">Mobile friendly</a>
+                        <a class="dropdown-item text-white display-4" href="@(Url.Action("index","home",new { area =string.Empty}))">Based on Bootstrap</a>
+                        <div class="dropdown">
+                            <a class="dropdown-item dropdown-toggle text-white display-4" data-toggle="dropdown-submenu" href="@(Url.Action("index", "home", new { area = string.Empty }))">Trendy blocks</a>
+                            <div class="dropdown-menu dropdown-submenu">
+                                <a class="dropdown-item text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">Image/content slider</a>
+                                <a class="dropdown-item text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">Contact forms</a>
+                                <a class="dropdown-item text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">Image gallery</a>
+                                <a class="dropdown-item text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">Mobile menu</a>
+                                <a class="dropdown-item text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">Google maps</a>
+                                <a class="dropdown-item text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">Social buttons</a>
+                                <a class="dropdown-item text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">Google fonts</a>
+                                <a class="dropdown-item text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">Video background</a>
+                            </div>
+                        </div>
+                        <a class="dropdown-item  text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">Host anywhere</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link link dropdown-toggle  text-white display-4" data-toggle="dropdown-submenu" href="@(Url.Action("index", "home", new { area = string.Empty }))" aria-expanded="false">
+                        <span class="mbri-info mbr-iconfont mbr-iconfont-btn"></span>
+                        关于我们
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item  text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">
+
+                            意见&建议
+                        </a>
+                        <a class="dropdown-item  text-white display-4" href="http://forums.onedot.com/">
+                            联系我们
+                        </a>
+                        <a class="dropdown-item  text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">相关资质</a>
+                        <a class="dropdown-item  text-white display-4" href="@(Url.Action("index", "home", new { area = string.Empty }))">企业荣誉</a>
+                        <a class="dropdown-item  " href="javascript:void(0);">
+                            <img src="~/Images/OnedotQR.png" height="120" />
+
+                        </a>
+                    </div>
+                </li>
+
+
+                @*@{ Html.RenderPartial("_HeaderMenu");}*@
+                @(Html.Partial("_LoginPartial"))
+
+
+            </ul>
+            @*<div class="navbar-buttons mbr-section-btn">
+                    <a class="btn btn-sm btn-primary display-4" href="http://www.onedot.red:8008">
+                        <span class="mbri-save mbr-iconfont mbr-iconfont-btn "></span>
+                        Try It Now!
+                    </a>
+                </div>*@
+        </div>
+    </nav>
+</section>
+<section class="engine"><a href="https://onedot.co/j">design your own website</a></section>
+

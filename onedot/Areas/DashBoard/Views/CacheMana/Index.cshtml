@@ -1,0 +1,91 @@
+﻿<script>
+
+    function onDetailsListChanged() {
+
+        var ts = $("#tabCacheManage").data().kendoTabStrip;
+        ts.tabGroup.off('click', 'li');
+        ts.tabGroup.off('click', 'a');
+        ts.tabGroup.on('click', 'li', function (e) {
+            e.stopPropagation();
+            ts.reload($(this));
+        })
+    }
+
+</script>
+
+
+
+@{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/DashBoard/Views/Shared/_LayoutDash.cshtml";
+    string w = "12px";
+
+}
+
+
+
+
+@(Html.Kendo().TabStrip()
+    .Name("tabCacheManage")
+    .Animation(false)
+    .HtmlAttributes(new { style = "height:100%;" })
+    .SelectedIndex(0)
+    .Events(evt =>
+    evt.Select("onDetailsListChanged")
+    )
+    .Items(i =>
+    {
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+           .Text(Lang.DefaultCache)
+           .LoadContentFrom("SysCache", "CacheMana", new { Area = "dashboard"})
+           .ContentHtmlAttributes(new { style = "height:100%;" });
+
+
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+           .Text(Lang.SecondDataCache)
+           .LoadContentFrom("SecondCache", "CacheMana", new { Area = "dashboard"})
+           .ContentHtmlAttributes(new {  style = "height:100%;"});
+
+
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+            .Text(Lang.PageCache)
+            .LoadContentFrom("PageCache", "CacheMana", new { Area = "dashboard" })
+            .ContentHtmlAttributes(new { style = "height:100%;" });
+
+    })
+)
+
+
+
+<script>
+
+    $(function () {
+
+        $("#tabCacheManage").delegate('.destroy-cache', 'click',
+            function (e) {
+
+                if (!confirm("@Lang.ClearTableContent")) return false;
+
+                e.preventDefault();
+                grid = $("#" + $(e.target).closest(".k-grid").attr("id")).data("kendoGrid");
+                ///dashBoard/logger/Delete_LoggerFiles
+                var _url = "@Url.Action("destroyCache", "cachemana", new { Area = "dashBoard" })";
+                var _data = { CacheCategory: $(e.target).attr("data-item")}
+
+
+                $.majax({
+                    url: _url,
+                    data: _data,
+                    type: "post",
+                    dataType:"json",
+                    success: function (data, tx, idx) {
+                        if (kendoRequestBack(data)) {
+                            grid.dataSource.data([]);
+                        }
+                    }
+                });
+
+            });
+    })
+</script>

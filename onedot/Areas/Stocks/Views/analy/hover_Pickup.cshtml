@@ -1,0 +1,195 @@
+﻿@model List<one.OneDot.Areas.Stocks.Repository.M_hoverPickup>
+@{
+    ViewBag.Title = "hover_Pickup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/kendo/2013020918/kendo.common.css" rel="stylesheet" />
+<link id="cssSelectLink" href="~/Content/kendo/2013020918/kendo.bootstrap.min.css" rel="stylesheet" />
+@Scripts.Render("~/Scripts/extend")
+
+<br />
+<br />
+<br />
+
+
+<div class="row">
+
+    <div class="col-lg-1">
+
+    </div>
+    <div class="col-lg-10">
+        @using (Html.BeginForm("hover_Pickup", "analy", new { area = "Stocks" }, FormMethod.Post, new { id = "queryForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            @:放量日期：
+            @(Html.Kendo().DatePicker()
+            .Name("pickUpTime")
+        .Format("yyyy-MM-dd")
+        .HtmlAttributes(new { style = "width:190px;",
+            value = ViewBag.pickUpTime
+        })
+            )
+
+
+
+            @:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;放量倍数：
+            @(Html.Kendo().NumericTextBox()
+                                        .Name("volumeRate")
+                                        .Format("{0:0.00}")
+                                        .Step(0.1)
+                                        .Min(0.1).Max(3)
+                                        .HtmlAttributes(new { style = "width:90px;", value = Convert.ToDecimal(ViewBag.volumeRate) })
+
+            )
+
+
+            @:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;横盘天数：
+            @(Html.Kendo().NumericTextBox()
+                                        .Name("days")
+                                        .Format("{0:0}")
+                                        .Step(1)
+                                        .Min(2).Max(20)
+                                        .HtmlAttributes(new { style = "width:90px;" ,value = Convert.ToDouble(ViewBag.days) })
+
+                                        )
+
+
+
+            @:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;横盘成交量波动范围：
+            @(Html.Kendo().NumericTextBox()
+                                        .Name("range")
+                                        .Format("{0:0.00}")
+                                        .Step(0.1)
+                                        .Min(0.1).Max(1)
+                                        .HtmlAttributes(new { style = "width:90px;",value = Convert.ToDecimal(ViewBag.range) })
+
+            )
+
+
+            @:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;放量类型：
+            @(Html.Kendo().DropDownList()
+            .Name("UpOrDown")
+            .HtmlAttributes(new { style = "width:80px;"})
+            //.Events(evt => evt.Change("function(){$.lang(this.value()); window.location.reload();}")
+            //.DataBound("function(){ this.value($.lang());}"))
+            .BindTo(new List<SelectListItem>() {
+                new SelectListItem(){
+                    Value = "1",
+                    Text ="上涨"
+                },
+                new SelectListItem(){
+                    Value = "2",
+                    Text ="下跌"
+                }
+            })
+            )
+
+
+
+
+            @*<span class="mbr-section-btn">
+                <button type="submit" class="btn btn-default" value="提交查询">  </button>
+            </span>*@
+            @:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <div class=" mbr-section-btn" style="display:inline-block">
+                <button type="submit" class="btn btn-sm btn-normal display-4">
+                    <span class="mbri-sites mbr-iconfont mbr-iconfont-btn "></span>
+                    提交查询
+                </button>
+            </div>
+
+        }
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+<div class="container-fluid">
+
+
+    <div class="col-lg-12">
+
+
+        @(Html.Kendo().Grid(Model)
+    .Name("gridHoverPickup")
+    .Columns(columns =>
+    {
+
+    columns.Bound(c => c.stockcode).Title("代码");
+    columns.Bound(c => c.name).Title("名称");
+    columns.Bound(c => c.industry).Title("行业");
+    columns.Bound(c => c.area).Title("区域");
+        @*columns.Template(@<text><span>@(rowCount++)</span> </text>).Title("序号").Width(60);
+            //columns.Bound(c => c.islandRoomTypeId).Title(Resources.Order_RoomCategory);
+
+            columns.Bound(c => c.roomName).Title(Resources.Room_No).Width(120);
+
+            columns.ForeignKey(p => p.islandRoomTypeId,
+                (System.Collections.IEnumerable)ViewBag.islandRoomType, "id", "name")
+                .Title(Resources.Order_RoomCategory).Width(220);
+
+            columns.Bound(c => c.describe).Title(Resources.Describe);
+
+            columns.Bound(c => c.roomState).Title("房态").Width(60);
+            columns.Bound(c => c.isDel).Title("作废").Width(60);
+
+            //ViewBag.islandRoomType
+            columns.Command(command =>
+            {
+                command.Edit().Text(Resources.edit);
+                command.Destroy().Text(Resources.delete);
+            }).Width(160);*@
+    })
+    //.Scrollable(a => a.Height(1))
+    .Selectable(s => s.Mode(GridSelectionMode.Single))
+    .Editable(editable => editable.Mode(GridEditMode.PopUp)
+        .Window(s => s.Width(480)))
+    .Scrollable(s => s.Height(600))
+            .Pageable(p => p.Input(false)
+                        .Numeric(false)
+                        // .PageSizes(new[] { 20, 50, 120 })
+                        // .Refresh(true)
+                        .Info(true)
+                        .PreviousNext(false)
+                        .Messages(a =>
+                        {
+                            a.ItemsPerPage("行/页");
+                            a.Page("第");
+                            a.Of("页,共{0}页");
+                            a.Display("第{0}-{1}行,共{2}行");
+                        }))
+    //.Navigatable()
+    .Sortable()
+    //.HtmlAttributes(new { style = "height:580px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Batch(false)
+        // .ServerOperation(false)
+        .PageSize(200)
+        .Events(events => events
+            .Error("error_handler")
+            .RequestEnd("RequestEndFunc"))
+        .Model(model =>
+        {
+            model.Id(p => p.stockcode);
+            model.Field(p => p.stockcode).Editable(false);
+        })
+        )
+
+        )
+
+
+
+
+    </div>
+</div>

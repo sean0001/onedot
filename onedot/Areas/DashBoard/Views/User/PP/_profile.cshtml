@@ -1,0 +1,150 @@
+﻿@model one.Service.ViewModels.ViewUserProfile
+<br />
+<br />
+<br />
+
+
+
+
+<form class="form-horizontal"  method="post" action="@(Url.Action("ProfileInfo","user",new { Area = "dashboard"}, Request.Url.Scheme))">
+
+    @Html.HiddenFor(a=>a.UserId)
+    @Html.HiddenFor(a=>a.UserName)
+    @Html.HiddenFor(a=>a.CreateTime)
+    @Html.HiddenFor(a => a.LastUpdateTime)
+    @Html.AntiForgeryToken()
+
+    <div class="form-group" style="min-height:2em;">
+
+        <label  class="col-sm-1 control-label"></label>
+
+        <div class="col-sm-4">
+          @Html.OneValidationSummary()
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group" >
+        <label for="UserName" class="col-sm-1 control-label">@Lang.UserName</label>
+        <div class="col-sm-4">
+            <span style="line-height:2.7em;padding-left:12px;">@Html.DisplayFor(a => a.UserName)</span>
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="NickName" class="col-sm-1  control-label">@Lang.NickName</label>
+        <div class="col-sm-4">
+
+            @Html.TextBoxFor(a => a.NickName, new { @class = "form-control", placeholder = Lang.NickName })
+
+
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <label for="email" class="col-sm-1  control-label">@Lang.Email</label>
+        <div class="col-sm-4">
+
+            @Html.TextBoxFor(a => a.Email, new { @class = "form-control", placeholder = Lang.Email })
+
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+
+        <label for="Phone" class="col-sm-1 control-label">@Lang.PhoneNumber</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(a => a.Phone, new { @class = "form-control", placeholder = Lang.PhoneNumber })
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="Mobile" class="col-sm-1 control-label">@Lang.MobileNumber</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(a => a.Mobile, new { @class = "form-control", placeholder = Lang.MobileNumber })
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="QQ" class="col-sm-1 control-label">@Lang.QQNumber</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(a => a.QQ, new { @class = "form-control", placeholder = Lang.QQNumber })
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="BelongDepartment" class="col-sm-1 control-label">@Lang.Department</label>
+        <div class="col-sm-4">
+            
+            @Html.TextBoxFor(a => a.BelongDepartment, new { @class = "form-control", placeholder = Lang.Department })
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="CreateTime" class="col-sm-1 control-label">@Lang.RegisterTime</label>
+        <div class="col-sm-4">
+            
+            <span style="line-height:2.7em;padding-left:12px;">@Html.DisplayFor(a => a.CreateTime)</span>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="form-group">
+        <label for="LastUpdateTime" class="col-sm-1 control-label">@Lang.LastUpdateTime</label>
+        <div class="col-sm-4">
+
+            <span style="line-height:2.7em;padding-left:12px;">@Html.DisplayFor(a => a.LastUpdateTime)</span>
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-10">
+            <button type="button" class="btn k-button btn-normal one-form-button">
+                <i class="icon-save"></i>
+                @Lang.Btn_Save
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+
+<style>
+
+    .k-tabstrip .k-content {
+        height:100%;
+    }
+
+
+</style>
+

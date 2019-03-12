@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" />
+    <title>后台管理</title>
+
+    @*@Styles.Render("~/Content/kendo")*@
+    <link id="cssSelectLink" href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2013020918/kendo.common.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link id="cssSelectLink" href="~/Content/kendo/2013020918/kendo.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    @Scripts.Render("~/Scripts/jq")
+    @Scripts.Render("~/Scripts/extend")
+    <script src="@Url.Content("~/Scripts/toastr.js?v="+ DateTime.Now)" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/backend.js?v="+ DateTime.Now)" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common.js?v="+ DateTime.Now)" type="text/javascript"></script>
+    
+    
+</head>
+
+
+
+
+<body class="full-Screen">
+    <!--body-->
+    <div>
+        @RenderSection("featured", required: false)
+
+      <section class="clear-fix">
+
+      @(Html.Kendo().Splitter()
+      .Name("mainSplitter")
+      .HtmlAttributes(new { style = "height:100%; width:100%;position:absolute;" })
+      .Orientation(SplitterOrientation.Vertical)
+
+      .Panes(verticalPanes =>
+      {
+          verticalPanes.Add()
+             .Size("68px")
+             .HtmlAttributes(new { id = "top-pane", style = "overflow:hidden;" })
+              .Resizable(false)
+              .Collapsible(false)
+              .Content(@<text>
+                @Html.Action("mainTopPane", "dash", new { area = "dashBoard" })
+            </text>);
+
+          verticalPanes.Add()
+             .HtmlAttributes(new { id = "center-pane" })
+             .Scrollable(false)
+             .Collapsible(false)
+             .Size("86%")
+             .Content(
+             Html.Kendo().Splitter()
+                   .Name("horizontal")
+                   .Events(e => e.Resize("onResized"))
+                   .HtmlAttributes(new { style = "height: 100%;" })
+                   .Panes(horizontalPanes =>
+                   {
+                       horizontalPanes.Add()
+                           .HtmlAttributes(new { id = "left-pane", style = "overflow:hidden;" })
+                           .MinSize("120px")
+                           .Size("220px")
+                           .Collapsible(true)
+                           .Content(@<text>
+                            @Html.Action("mainMenu", "dash", new { area = "dashBoard" })
+                        </text>);
+                       horizontalPanes.Add()
+                           .HtmlAttributes(new { id = "center-pane-left", Style = " overflow:hidden;" })
+
+                           .Content(@<text> @RenderBody() </text>);
+                    }).ToHtmlString()
+              );
+      })
+            )
+        </section>
+    </div>
+
+    <!--body-->
+    
+    
+    @RenderSection("footer", required: false)
+
+</body>
+</html>
+
+
+
+<script>
+    function onResized() {
+        return false;
+    }
+
+
+
+ 
+
+</script>

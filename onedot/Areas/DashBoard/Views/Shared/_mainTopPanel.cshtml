@@ -1,0 +1,69 @@
+﻿@using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm", style = "display:none;" }))
+{
+    @Html.AntiForgeryToken()
+}
+<div id="main-top-bar">
+    <div class="left-area">
+        <ul>
+            <li>
+                <span title="当前操作员账号"><span class="icon-user"></span>@(User.Identity.Name)</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span title="所属角色"><span class="icon-group"></span>@(string.Join(",", (List<string>)ViewBag.UserRole))</span>
+            </li>
+            <li>
+                <span title="客户端IP地址">
+                    <span class="icon-sitemap"></span>@(Request.UserHostAddress)
+                </span>
+            </li>
+            <li>
+                <span title="当前系统时间"><span class="icon-time"></span><span id="current_datetime_dynamic"> @(DateTime.Now.ToString("yyyy年MM月dd日 hh:mm:ss"))</span></span>
+
+            </li>
+        </ul>
+    </div>
+
+    
+
+    <div class="right-area">
+        <ul>
+            <li>
+                <a class="k-link" title="返回到系统前端主页" href="@(Url.Action("index", "home", new {area =string.Empty }))">
+                    <span class="icon-home"></span>
+                    @(Lang.HomePage)
+                </a>
+            </li>
+
+            <li>
+                <a class="k-link" title="返回到系统桌面" href="@(Url.Action("index", "main", new {area ="admin" }))">
+                    <span class="icon-desktop"></span>@(Lang.Desktop)
+                    
+                </a>
+            </li>
+
+            <li>
+                <a class="k-link" title="用户退出系统" href="javascript:document.getElementById('logoutForm').submit()">
+                    <span class="icon-signout"></span>
+                    @(Lang.LoggonOut)
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+<script>
+
+
+
+
+    function testtoastr() {
+        toastr.info('你需要的信息已经通过email发送给你了你需要的信息已经通过email发送给你了你需要的信息已经通过email发送给你了你需要的信息已经通过email发送给你了', "提示信息");
+        toastr.success('你需要的信息已经通过email发送给你了', "提示信息");
+        toastr.warning('你需要的信息已经通过email发送给你了', "提示信息");
+        toastr.error('你需要的信息已经通过email发送给你了', "提示信息");
+    }
+
+
+</script>

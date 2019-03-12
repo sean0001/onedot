@@ -1,0 +1,126 @@
+﻿
+<section id="menu-0" style="font-size:12px;">
+
+    <nav class="navbar navbar-dropdown bg-color transparent navbar-fixed-top">
+        <div class="container">
+
+            <div class="mbr-table">
+                <div class="mbr-table-cell">
+
+                    <div class="navbar-brand">
+                        <a href="@(Url.Action("index","home"))" class="navbar-logo"><img src="~/Scripts/assets/images/logo.png" alt="onedot"></a>
+                        <a class="navbar-caption" href="@(Url.Action("index","home"))"></a>
+                    </div>
+
+                </div>
+                <div class="mbr-table-cell">
+
+                    <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="hamburger-icon"></div>
+                    </button>
+
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="http://www.onedot.red:8008/" aria-expanded="false">关于我们</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="http://www.onedot.red:8008/">意见&建议</a>
+                                <a class="dropdown-item" href="http://forums.onedot.com/">联系我们</a>
+                                <a class="dropdown-item" href="http://www.onedot.red:8008/">相关资质</a>
+                                <a class="dropdown-item" href="http://www.onedot.red:8008/">企业荣誉</a>
+                                <a class="dropdown-item" href="javascript:void(0);">
+                                    <img src="~/Images/OnedotQR.png" height="120" />
+
+                                </a>
+                            </div>
+                        </li>
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="http://www.onedot.red:8008/" aria-expanded="false">解决方案</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="http://www.onedot.red:8008/">Mobile friendly</a>
+                                <a class="dropdown-item" href="http://www.onedot.red:8008/">Based on Bootstrap</a>
+                                <div class="dropdown">
+                                    <a class="dropdown-item dropdown-toggle" data-toggle="dropdown-submenu" href="http://www.onedot.red:8008/">Trendy blocks</a>
+                                    <div class="dropdown-menu dropdown-submenu">
+                                        <a class="dropdown-item" href="http://www.onedot.red:8008/">Image/content slider</a>
+                                        <a class="dropdown-item" href="http://www.onedot.red:8008/">Contact forms</a>
+                                        <a class="dropdown-item" href="http://www.onedot.red:8008/">Image gallery</a>
+                                        <a class="dropdown-item" href="http://www.onedot.red:8008/">Mobile menu</a>
+                                        <a class="dropdown-item" href="http://www.onedot.red:8008/">Google maps</a>
+                                        <a class="dropdown-item" href="http://www.onedot.red:8008/">Social buttons</a>
+                                        <a class="dropdown-item" href="http://www.onedot.red:8008/">Google fonts</a>
+                                        <a class="dropdown-item" href="http://www.onedot.red:8008/">Video background</a>
+                                    </div>
+                                </div>
+                                <a class="dropdown-item" href="http://www.onedot.red:8008/">Host anywhere</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="http://www.onedot.red:8008/" aria-expanded="false">成功案例</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="http://forums.onedot.com/">Forum</a>
+                                <a class="dropdown-item" href="http://www.onedot.red:8008/">Tutorials</a>
+                                <a class="dropdown-item" href="http://www.onedot.red:8008/">Contact us</a>
+                                <a class="dropdown-item" href="javascript:void(0);">
+                                    <img src="~/Images/OnedotQR.png" height="120" />
+
+                                </a>
+                            </div>
+                        </li>
+
+                        @*<li class="nav-item"><a class="nav-link link" href="http://www.onedot.red:8008/" aria-expanded="false">联系我们</a></li>*@
+
+                        @(Html.Partial("_LoginPartial"))
+
+
+                    </ul>
+                    <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="close-icon"></div>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+</section>
+
+
+
+@*<section class="engine"><a href="https://onedot.co/m">bootstrap table</a></section>*@
+
+
+
+@*<div class="navbar  navbar-default navbar-fixed-top" style="margin-bottom:0px;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@(Url.Action("Index", "Home", new { area = string.Empty}))">
+                <img style="margin-top:8px;" src="@(Url.Content("~/Content/images/logo.png"))" />
+                </a>
+            </div>
+
+            <div class="navbar-collapse collapse" style="margin:8px 0px;">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
+                    <li>@Html.ActionLink("关于", "About", "Home")</li>
+                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+
+
+                </ul>
+
+                <ul class="nav navbar-nav" style="float: right">
+                    @Html.Partial("_LoginPartial")
+                </ul>
+
+
+            </div>
+        </div>
+    </div>*@

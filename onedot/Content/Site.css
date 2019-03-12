@@ -1,0 +1,365 @@
+ul,ol,body{list-style:none; margin:0px; padding:0px;}
+.field-validation-error{ float:left; color:red; }
+
+
+.full-Screen {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+.k-widget.k-tooltip-validation {
+    background-color: transparent;
+    border: 0;
+    color: #c09853;
+    box-shadow: none;
+}
+
+
+
+
+
+
+
+
+#toast-container > .toast-success i:before {
+    content: "\f00c";
+}
+
+
+#toast-container > .toast-error i:before {
+    /*content: "\f00d";*/
+    content: "\f06a";
+}
+
+
+#toast-container > .toast-info i:before {
+    content: "\f0e5";
+}
+
+#toast-container > .toast-warning i:before {
+    content: "\f06a";
+}
+
+#toast-container .toast {
+    display: table;
+    background-image: none,linear-gradient(to bottom,#fff 0,#e6e6e6 100%);
+    color: #444;
+}
+
+#toast-container .toast-message {
+    display: table;
+    vertical-align: middle;
+    /*line-height:4em;*/
+    padding:6px 2px;
+}
+
+#toast-container span {
+    vertical-align: middle;
+    display: table-cell;
+    /*line-height:1.8em;*/
+}
+
+
+#toast-container i {
+    font-size: 3em;
+    vertical-align: middle;
+    padding-right: 18px;
+    display:table-cell;
+}
+
+#toast-container .toast-success i {
+    color: forestgreen;
+}
+
+#toast-container .toast-error i {
+    color: red;
+}
+
+#toast-container .toast-info {
+    background-color: #00a0d9;
+}
+
+#toast-container .toast-warning {
+    background-color: #f9be00;
+}
+
+
+
+
+
+
+
+.one-validation-summary {
+
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes cssAnimation {
+    to {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+
+@-webkit-keyframes cssAnimation {
+    to {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
+}
+
+
+
+
+.one-validation-summary {
+    font-size:1.2em;
+    padding-left:6px;
+    color:#777;
+    letter-spacing:1px;
+}
+
+ .one-validation-summary li {
+        display:table;
+    }
+
+ .one-validation-summary li * {
+        display: table-cell;
+        vertical-align:middle;
+    }
+
+
+.one-validation-summary .Error i {
+        color: red;
+    }
+
+.one-validation-summary .Success i {
+    color:forestgreen;
+}
+
+.one-validation-summary span{
+
+    padding-left:8px;
+
+
+}
+
+
+
+
+
+
+
+
+
+    
+ label {
+        font-weight: 400;
+    }
+
+
+#main-top-bar .left-area{
+    vertical-align:middle;
+    width:30em;
+    display:inline-block;
+    margin-left:6px;
+}
+
+#main-top-bar .right-area {
+    float:right;
+    margin-right:8px;
+}
+
+
+#main-top-bar li
+{
+    padding:3px 0;
+}
+
+
+#main-top-bar li [class^="icon-"]
+{
+    padding-right:8px;
+}
+
+#main-top-bar .right-area a {
+    color:#333;
+    padding-right:8px;
+}
+
+.k-window {
+    top:20%;
+}
+
+.one-information-right,
+.one-information-error {
+    min-height:2em;
+}
+
+.one-information-right {
+    color:forestgreen;
+}
+
+.btn-normal {  line-height: 2.4em;  padding: 0.2em 2em; }
+
+button:focus{color:white;}
+.k-toolbar {padding:1px 2px; }
+.k-toolbar button{line-height:2.6em; padding:2px 20px;}
+.k-edit-buttons a{line-height:2em; padding:2px 20px;}
+.k-button i { position:relative; top:1px; padding-right:6px; font-size:14px;}
+.k-window .k-grid-toolbar .k-button {
+    line-height: 2em;
+    padding: 2px 10px;
+}
+
+
+.k-checkbox input {
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    color: #777;
+    border: 1px solid #808080;
+    transition: all 0.4s;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.9s ease;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 100;
+}
+
+
+#oneGridPopwinWrap {
+    float:left; 
+    /*min-width:500px;*/ 
+    overflow:hidden;
+    padding:30px 40px;
+}
+
+
+
+.popup-edit-block {
+    width:100%;
+    padding:30px 50px;
+}
+
+
+
+
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+
+
+
+
+/* kendo grid preperty rewrite *****************************************************************/
+
+.k-filter {
+    background-position: -0px -288px !important;
+}
+
+.k-dropdown .k-i-arrow-s {
+    background-position: -0px -288px !important;
+}
+
+.k-numerictextbox .k-i-arrow-s {
+    background-position: -0px -293px !important;
+}
+
+
+
+
+.k-i-arrow-n {
+    background-position: -0px -258px !important;
+}
+
+.k-grid td[title] {
+    white-space:nowrap;
+}
+
+
+
+/* kendo grid preperty rewrite *****************************************************************/
+
+
+
+/* to identify file type with custom icon  *****************************************************/
+.bmp-file,
+.png-file,
+.jpg-file,
+.gif-file 
+{ 
+    background-image: url(/content/Images/jpg.png) !important; 
+    background-repeat:no-repeat;
+}
+
+.docx-file,
+.doc-file 
+{ background-image: url(/content/Images/doc.png) !important; 
+  background-repeat:no-repeat;
+}
+
+.pdf-file 
+{ background-image: url(/content/Images/pdf.png) !important; 
+  background-repeat:no-repeat;
+}
+.xlsx-file,
+.xls-file 
+{ background-image: url(/content/Images/xls.png) !important; 
+  background-repeat:no-repeat;
+}
+
+.rar-file,
+.zip-file 
+{ 
+  background-image: url(/content/Images/rar.png) !important; 
+  background-repeat:no-repeat;
+ background-position:0 2px;
+}
+
+.msg-file {
+   background-image: url(/content/Images/msg.png) !important; 
+   background-repeat:no-repeat;
+   background-position:0 2px;
+}
+
+
+.default-file 
+{ background-image: url(/content/Images/default.png) !important; 
+  background-repeat:no-repeat;
+}
+
+
+
+/* to identify file type with custom icon  **********************************************************/
+
+

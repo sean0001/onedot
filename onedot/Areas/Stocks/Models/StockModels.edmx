@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="st_dayDataHistory">
+          <Key>
+            <PropertyRef Name="pDate" />
+            <PropertyRef Name="stockCOde" />
+          </Key>
+          <Property Name="pDate" Type="date" Nullable="false" />
+          <Property Name="stockCOde" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="open" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="high" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="close" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="low" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="volume" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="price_change" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="p_change" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ma5" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ma10" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ma20" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="v_ma5" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="v_ma10" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="v_ma20" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="turnover" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="st_industryClassify">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="industry" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="st_lastDayData">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="changepercent" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="trade" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="open" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="high" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="low" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="settlement" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="volume" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="turnoverratio" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="per" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="pb" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="mktcap" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="nmc" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="st_stock_basics_info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="industry" Type="nvarchar" MaxLength="50" />
+          <Property Name="area" Type="nvarchar" MaxLength="50" />
+          <Property Name="pe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="outstanding" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="totals" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="totalAssets" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="liquidAssets" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="fixedAssets" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="reserved" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="reservedPerShare" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="esp" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="bvps" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="pb" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="timeToMarket" Type="int" />
+          <Property Name="undp" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="perundp" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="rev" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="profit" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="gpr" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="npr" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="holders" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'tuShare.dbo.st_tmp_averageLine' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="st_tmp_averageLine">
+          <Property Name="stockCode" Type="varchar" MaxLength="50" />
+          <Property Name="fivep" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="tenp" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="twentyp" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="fivev" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="tenv" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="twentyv" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>-->
+        <EntityContainer Name="StockModelStoreContainer">
+          <EntitySet Name="st_dayDataHistory" EntityType="Self.st_dayDataHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="st_industryClassify" EntityType="Self.st_industryClassify" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="st_lastDayData" EntityType="Self.st_lastDayData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="st_stock_basics_info" EntityType="Self.st_stock_basics_info" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StockEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="st_dayDataHistory" EntityType="StockModel.st_dayDataHistory" />
+          <EntitySet Name="st_industryClassify" EntityType="StockModel.st_industryClassify" />
+          <EntitySet Name="st_lastDayData" EntityType="StockModel.st_lastDayData" />
+          <EntitySet Name="st_stock_basics_info" EntityType="StockModel.st_stock_basics_info" />
+        </EntityContainer>
+        <EntityType Name="st_dayDataHistory">
+          <Key>
+            <PropertyRef Name="pDate" />
+            <PropertyRef Name="stockCOde" />
+          </Key>
+          <Property Name="pDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="stockCOde" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="open" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="high" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="close" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="low" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="volume" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="price_change" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="p_change" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ma5" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ma10" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ma20" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="v_ma5" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="v_ma10" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="v_ma20" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="turnover" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="st_industryClassify">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="industry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="st_lastDayData">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="changepercent" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="trade" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="open" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="high" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="low" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="settlement" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="volume" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="turnoverratio" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="per" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="pb" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="mktcap" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="nmc" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="st_stock_basics_info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="industry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="outstanding" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totals" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalAssets" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="liquidAssets" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="fixedAssets" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="reserved" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="reservedPerShare" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="esp" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="bvps" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="pb" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="timeToMarket" Type="Int32" />
+          <Property Name="undp" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="perundp" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="rev" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="profit" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="gpr" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="npr" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="holders" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StockModelStoreContainer" CdmEntityContainer="StockEntities">
+          <EntitySetMapping Name="st_dayDataHistory">
+            <EntityTypeMapping TypeName="StockModel.st_dayDataHistory">
+              <MappingFragment StoreEntitySet="st_dayDataHistory">
+                <ScalarProperty Name="turnover" ColumnName="turnover" />
+                <ScalarProperty Name="v_ma20" ColumnName="v_ma20" />
+                <ScalarProperty Name="v_ma10" ColumnName="v_ma10" />
+                <ScalarProperty Name="v_ma5" ColumnName="v_ma5" />
+                <ScalarProperty Name="ma20" ColumnName="ma20" />
+                <ScalarProperty Name="ma10" ColumnName="ma10" />
+                <ScalarProperty Name="ma5" ColumnName="ma5" />
+                <ScalarProperty Name="p_change" ColumnName="p_change" />
+                <ScalarProperty Name="price_change" ColumnName="price_change" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="close" ColumnName="close" />
+                <ScalarProperty Name="high" ColumnName="high" />
+                <ScalarProperty Name="open" ColumnName="open" />
+                <ScalarProperty Name="stockCOde" ColumnName="stockCOde" />
+                <ScalarProperty Name="pDate" ColumnName="pDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="st_industryClassify">
+            <EntityTypeMapping TypeName="StockModel.st_industryClassify">
+              <MappingFragment StoreEntitySet="st_industryClassify">
+                <ScalarProperty Name="industry" ColumnName="industry" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="st_lastDayData">
+            <EntityTypeMapping TypeName="StockModel.st_lastDayData">
+              <MappingFragment StoreEntitySet="st_lastDayData">
+                <ScalarProperty Name="nmc" ColumnName="nmc" />
+                <ScalarProperty Name="mktcap" ColumnName="mktcap" />
+                <ScalarProperty Name="pb" ColumnName="pb" />
+                <ScalarProperty Name="per" ColumnName="per" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="turnoverratio" ColumnName="turnoverratio" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="settlement" ColumnName="settlement" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="high" ColumnName="high" />
+                <ScalarProperty Name="open" ColumnName="open" />
+                <ScalarProperty Name="trade" ColumnName="trade" />
+                <ScalarProperty Name="changepercent" ColumnName="changepercent" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="st_stock_basics_info">
+            <EntityTypeMapping TypeName="StockModel.st_stock_basics_info">
+              <MappingFragment StoreEntitySet="st_stock_basics_info">
+                <ScalarProperty Name="holders" ColumnName="holders" />
+                <ScalarProperty Name="npr" ColumnName="npr" />
+                <ScalarProperty Name="gpr" ColumnName="gpr" />
+                <ScalarProperty Name="profit" ColumnName="profit" />
+                <ScalarProperty Name="rev" ColumnName="rev" />
+                <ScalarProperty Name="perundp" ColumnName="perundp" />
+                <ScalarProperty Name="undp" ColumnName="undp" />
+                <ScalarProperty Name="timeToMarket" ColumnName="timeToMarket" />
+                <ScalarProperty Name="pb" ColumnName="pb" />
+                <ScalarProperty Name="bvps" ColumnName="bvps" />
+                <ScalarProperty Name="esp" ColumnName="esp" />
+                <ScalarProperty Name="reservedPerShare" ColumnName="reservedPerShare" />
+                <ScalarProperty Name="reserved" ColumnName="reserved" />
+                <ScalarProperty Name="fixedAssets" ColumnName="fixedAssets" />
+                <ScalarProperty Name="liquidAssets" ColumnName="liquidAssets" />
+                <ScalarProperty Name="totalAssets" ColumnName="totalAssets" />
+                <ScalarProperty Name="totals" ColumnName="totals" />
+                <ScalarProperty Name="outstanding" ColumnName="outstanding" />
+                <ScalarProperty Name="pe" ColumnName="pe" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="industry" ColumnName="industry" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

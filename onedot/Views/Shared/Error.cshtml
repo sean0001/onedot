@@ -1,0 +1,18 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{ 
+    ViewBag.Title = "Error";
+    Layout = null;
+    }
+<h2> Sorry, an error occurred while processing your request. </h2>
+
+@if (Model != null)
+{
+    <p>Controller Name: @Model.ControllerName</p>
+    <p>Action Name : @Model.ActionName</p>
+    <p>
+    <p>Exception Details: @Model.Exception.Message</p>
+    <p>Source:@Model.Exception.Source</p>
+    <pre>Stack Trace:@Model.Exception.StackTrace</pre>
+    <pre>InnerException:@Model.Exception.InnerException</pre>
+    </p>
+}

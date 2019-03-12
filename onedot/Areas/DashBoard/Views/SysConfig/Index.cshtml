@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/DashBoard/Views/Shared/_LayoutDash.cshtml";
+    string w = "16px";
+}
+
+@(Html.Kendo().TabStrip().Name("tabSysConfig")
+    .Animation(false)
+    .HtmlAttributes(new { style = "height:100%;" })
+    .SelectedIndex(0)
+    .Items(i =>
+    {
+
+
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+           .Text(Lang.GeneralParam)
+           .LoadContentFrom("GeneralConfig", "SysConfig", new { Area = "dashboard" })
+           .ContentHtmlAttributes(new { style = "height:100%;" });
+
+
+
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+           .Text(Lang.EmailParameter)
+           .LoadContentFrom("EmailConfig", "SysConfig", new { Area = "dashboard" })
+           .ContentHtmlAttributes(new { style = "height:100%;" });
+
+
+
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+            .Text(Lang.CacheParameter)
+            .LoadContentFrom("CacheConfig", "SysConfig", new { Area = "dashboard" })
+            .ContentHtmlAttributes(new { style = "height:100%;" });
+    })
+
+)
+

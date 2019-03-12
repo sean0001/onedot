@@ -1,0 +1,135 @@
+﻿@{
+    bool admin = false;
+    try
+    {
+        //admin =  User.IsInRole("admin");
+        if (Request.IsAuthenticated)
+        {
+            admin = true;
+        }
+    }
+    catch (Exception)
+    {
+    }
+}
+
+
+
+@*<li class="nav-item dropdown">
+        <a class="nav-link link dropdown-toggle text-white display-4" data-toggle="dropdown-submenu" href="http://www.onedot.red:8008/" aria-expanded="false">
+            <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+            关于我们
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item  text-white display-4" href="http://www.onedot.red:8008/">
+
+                意见&建议
+            </a>
+            <a class="dropdown-item  text-white display-4" href="http://forums.onedot.com/">
+                联系我们
+            </a>
+            <a class="dropdown-item  text-white display-4" href="http://www.onedot.red:8008/">相关资质</a>
+            <a class="dropdown-item  text-white display-4" href="http://www.onedot.red:8008/">企业荣誉</a>
+            <a class="dropdown-item  " href="javascript:void(0);">
+                <img src="~/Images/OnedotQR.png" height="120" />
+
+            </a>
+        </div>
+    </li>*@
+
+
+
+
+@using (Html.BeginForm("LogOff", "Account", 
+    new { area = string.Empty }, FormMethod.Post, 
+    new { id = "logoutForm", style = "display:none;" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+
+
+@if (Request.IsAuthenticated)
+{
+    <text>
+
+
+
+        <li class="nav-item dropdown">
+            <a class="nav-link link dropdown-toggle  text-white display-4"  data-toggle="dropdown-submenu" href="#">
+                <span class="mbri-user mbr-iconfont mbr-iconfont-btn"></span>
+                @(User.Identity.Name)
+            </a>
+
+            <div class="dropdown-menu">
+                <a class="dropdown-item text-white display-4" href="javascript:document.getElementById('logoutForm').submit()">
+                    注&nbsp;&nbsp;&nbsp;&nbsp; 销&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="mbri-logout mbr-iconfont mbr-iconfont-btn"></span>
+                </a>
+
+                <a class="dropdown-item  text-white display-4" href="http://www.onedot.red:8008/">
+                    个人信息
+                </a>
+                <a class="dropdown-item  text-white display-4" href="http://forums.onedot.com/">
+                    联系我们
+                </a>
+                
+            </div>
+
+        </li>
+
+
+
+@if (admin)
+{
+   
+
+    <div class="navbar-buttons mbr-section-btn">
+        <a class="btn btn-sm btn-primary display-4" href="@(Url.Action("desktop", "dash", new { area = "dashboard" }))">
+            <span class="mbri-sites mbr-iconfont mbr-iconfont-btn "></span>
+            后台管理
+        </a>
+    </div>
+
+    <div class="navbar-buttons mbr-section-btn">
+        <a class="dropdown-item  text-white display-4" href="@(Url.Action("stockgate","analy",new { area = "stocks"}))">
+            股票数据
+        </a>
+    </div>
+   
+
+}
+
+    </text>
+}
+else
+{
+
+    <li class="nav-item">
+        <a class="nav-link link text-white display-4"  id = "loginLink"  href="@(Url.Action("Login", "Account", new { area = string.Empty }))">
+            <span class="mbri-login mbr-iconfont mbr-iconfont-btn"></span>
+        &nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;</a>
+    </li>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

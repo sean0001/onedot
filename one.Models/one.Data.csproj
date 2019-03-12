@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{413DB0FE-E3AA-4D6E-B58E-520AAAB12F12}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>one.Data</RootNamespace>
+    <AssemblyName>one.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseRepository.cs" />
+    <Compile Include="Configuration\Auth_FuncTreeConfiguration.cs" />
+    <Compile Include="Configuration\Pub_MetaIndexConfiguration.cs" />
+    <Compile Include="Configuration\Auth_RoleFuncConfiguration.cs" />
+    <Compile Include="Configuration\Auth_RolesConfiguration.cs" />
+    <Compile Include="Configuration\Auth_UserClaimConfiguration.cs" />
+    <Compile Include="Configuration\Auth_UserInforConfiguration.cs" />
+    <Compile Include="Configuration\Auth_UserLoginConfiguration.cs" />
+    <Compile Include="Configuration\Auth_UserRoleConfiguration.cs" />
+    <Compile Include="Configuration\Auth_UsersConfiguration.cs" />
+    <Compile Include="Configuration\Pub_MetadataConfiguration.cs" />
+    <Compile Include="Conn.cs" />
+    <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\Auth_FuncTree.cs" />
+    <Compile Include="Entities\Auth_RoleFunc.cs" />
+    <Compile Include="Entities\Auth_Roles.cs" />
+    <Compile Include="Entities\Auth_UserClaim.cs" />
+    <Compile Include="Entities\Auth_UserInfor.cs" />
+    <Compile Include="Entities\Auth_UserLogin.cs" />
+    <Compile Include="Entities\Auth_UserRole.cs" />
+    <Compile Include="Entities\Pub_Metadata.cs" />
+    <Compile Include="Entities\Pub_MetaIndex.cs" />
+    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="DBInitializer.cs" />
+    <Compile Include="IdentityUserStore.cs" />
+    <Compile Include="Infrastructrue\Disposable.cs" />
+    <Compile Include="Infrastructrue\IDatabaseFactory.cs" />
+    <Compile Include="Infrastructrue\IRepository.cs" />
+    <Compile Include="Infrastructrue\IUnitOfWork.cs" />
+    <Compile Include="Infrastructrue\Page.cs" />
+    <Compile Include="Infrastructrue\RepositoryBase.cs" />
+    <Compile Include="Infrastructrue\UnitOfWork.cs" />
+    <Compile Include="Models\Auth_FuncTree.cs">
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Auth_Roles.cs">
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Auth_UserClaim.cs">
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Auth_UserInfor.cs">
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Auth_UserLogin.cs">
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Auth_Users.cs">
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OneDotEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OneDotEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OneDotEntities.cs" />
+    <Compile Include="Models\OneDotEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OneDotEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OneDotEntities1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pub_Metadata.cs">
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pub_MetaIndex.cs">
+      <DependentUpon>OneDotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryEntities\_RoleFunction.cs" />
+    <Compile Include="Repository\ApplicationConfigRepository.cs" />
+    <Compile Include="Repository\RoleRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\one.Core\one.Core.csproj">
+      <Project>{78718a1c-2845-4909-84a6-5b66a55567e9}</Project>
+      <Name>one.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Models\OneDotEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OneDotEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\OneDotEntities.edmx.diagram">
+      <DependentUpon>OneDotEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\OneDotEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OneDotEntities.edmx</DependentUpon>
+      <LastGenOutput>OneDotEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\OneDotEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OneDotEntities.edmx</DependentUpon>
+      <LastGenOutput>OneDotEntities1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Readme.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

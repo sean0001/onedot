@@ -1,0 +1,109 @@
+﻿@model one.Service.ViewUser
+
+
+<div id="oneGridPopwinWrap">
+    1111111111111
+    <div style="margin:10px 126px -20px -50px; width:110%;">
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.UserName))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field">
+            @(Html.TextBoxFor(a => a.UserName, new { @class = "k-textbox" }))
+        </div>
+
+
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.Name))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field">
+            @(Html.TextBoxFor(a => a.Name, new { @class = "k-textbox" }))
+        </div>
+
+
+        
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.Email))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field">
+            @(Html.TextBoxFor(a => a.Email, new { @class = "k-textbox" }))
+        </div>
+
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.PhoneNumber))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field">
+            @(Html.TextBoxFor(a => a.PhoneNumber, new { @class = "k-textbox" }))
+        </div>
+
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.Mobile))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field">
+            @(Html.TextBoxFor(a => a.Mobile, new { @class = "k-textbox" }))
+        </div>
+
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.QQ))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field">
+            @(Html.TextBoxFor(a => a.QQ, new { @class = "k-textbox" }))
+        </div>
+
+
+
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.Department))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field">
+            @(Html.TextBoxFor(a => a.Department, new { @class = "k-textbox" }))
+        </div>
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.Remark))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field">
+            @(Html.TextBoxFor(a => a.Remark, new { @class = "k-textbox" }))
+        </div>
+
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.Describe))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field">
+            @(Html.TextBoxFor(a => a.Describe, new { @class = "k-textbox" }))
+        </div>
+
+
+
+        <div class="k-edit-label">
+            @(Html.LabelFor(a => a.LockoutEnabled))
+        </div>
+        <div data-container-for="ProductName" class="k-edit-field" style="width:57%;">
+            @(Html.CheckBoxFor(a => a.LockoutEnabled))
+            锁到：
+            <span>
+                @(Html.Kendo().DateTimePickerFor(a => a.LockoutEndDateUtc)
+                .Format("yyyy-MM-dd HH:mm")
+                )
+            </span>
+        </div>
+    </div>
+
+
+</div>
+
+
+<style scoped>
+    #oneGridPopwinWrap .k-datetimepicker {
+        width:12.7em;
+    }
+</style>
+
+

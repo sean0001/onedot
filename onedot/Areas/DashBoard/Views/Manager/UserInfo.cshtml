@@ -1,0 +1,256 @@
+﻿@{
+    ViewBag.Title = "UserInfo";
+    Layout = "~/Areas/DashBoard/Views/Shared/_LayoutDash.cshtml";
+
+    ViewBag.animation = "expand";
+}
+
+
+
+
+
+    @(Html.Kendo().Grid<one.Service.ViewUser>()
+        .Name("GridUsers")
+        .HtmlAttributes(new { @class = "one-grid-resize"})
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.UserId).Title("ID").Hidden();
+
+            //columns.Bound(c => c.Descibe).Title("名称").Width(160);
+            //columns.ForeignKey(c => c.CategoryId, (System.Collections.IEnumerable)ViewBag.ExtensionItems, "Value", "Text").Title("项目名称").Width(160).Hidden();
+
+            //columns.ForeignKey(c => c.AlgorithmId, (System.Collections.IEnumerable)ViewBag.Algorithem, "Value", "Text").Title("算法分类").Width(80);
+
+
+            columns.Bound(c => c.UserName).Title(Lang.UserName).Width(160);
+
+            columns.Bound(c => c.Email).Title(Lang.Email).Width(160);
+            columns.Bound(c => c.PhoneNumber).Title(Lang.PhoneNumber).Width(160);
+            columns.Bound(c => c.Remark).Title(Lang.Remark).Width(160);
+            columns.Bound(c => c.Describe).Title(Lang.Describe).Width(160);
+            columns.Bound(c => c.Department).Title(Lang.Department).Width(160);
+
+            columns.Bound(c => c.LockoutEndDateUtc).Title(Lang.LockoutEndDateUtc).Width(240).Format(Fmt.Fmt_Datetime);
+
+
+            columns.Bound(c => c.CreateTime).Width(140).Title(Lang.CreateTime)
+                .HtmlAttributes(new { title = Lang.CreateTime_Title }).Format(Fmt.Fmt_Datetime);
+
+
+            //columns.Bound(c => c.BookingBegin).Width(96).Title("预定区间(起)").HtmlAttributes(new { style = "text-align:center;", title = "预定区间(起)" }).Format("{0:yyyy-MM-dd}");
+
+            //columns.Bound(c => c.BookingEnd).Width(96).Title("预定区间(止)").HtmlAttributes(new { style = "text-align:center;", title = "预定区间(止)" }).Format("{0:yyyy-MM-dd}");
+
+
+
+            //columns.Bound(c => c.AdultFee).Title("成人价格").Width(80)
+            //    .ClientTemplate("#= !AdultFee?'-':(kendo.toString(AdultFee,'\\#\\#\\#,\\#\\#0.00')) #").HtmlAttributes(new { style = "text-align:right;" });
+
+            //columns.Bound(c => c.ChildFee).Title("小孩价格").Width(80)
+            //    .ClientTemplate("#= !ChildFee?'-':(kendo.toString(ChildFee,'\\#\\#\\#,\\#\\#0.00')) #").HtmlAttributes(new { style = "text-align:right;" });
+
+            //columns.Bound(c => c.InfantFee).Title("婴儿价格").Width(80)
+            //    .ClientTemplate("#= !InfantFee?'-':(kendo.toString(InfantFee,'\\#\\#\\#,\\#\\#0.00')) #").HtmlAttributes(new { style = "text-align:right;" });
+
+            //columns.Bound(c => c.RegularFee).Title("统一价格").Width(80)
+            //    .ClientTemplate("#= !RegularFee?'-':(kendo.toString(RegularFee,'\\#\\#\\#,\\#\\#0.00')) #").HtmlAttributes(new { style = "text-align:right;" });
+
+            //columns.Bound(c => c.includeTax).Title("包含税费").ClientTemplate("#= formatGridTax(data) #").Width(160);
+
+            //columns.Bound(c => c.LastUpdateTime).Width(96).Title("最后修改").HtmlAttributes(new { style = "text-align:center;", title = "最后修改" }).Format("{0:yyyy-MM-dd}");
+
+            //columns.Bound(c => c.CreateBy).Title("创建人").Width(90);
+
+            //columns.Bound(c => c.Remark).Title("备注");
+
+            //        columns.Bound(p => p.Id).Title("操作").Width(80)
+            //           .ClientTemplate(@"<a  href='\\#' class='k-button k-button-icontext k-grid-edit'
+            //                                            title='修改订单'
+            //                                            style='width:26px;min-width:0px;' >
+            //                                            <span class='k-icon k-i-pencil'></span>
+            //                                        </a>
+            //
+            //                                        <a  href='\\#' class='k-button k-button-icontext k-grid-delete'
+            //                                            title='删除订单' onclick='return confirmDelete(this,event);'
+            //                                            style='width:26px;min-width:0px;'>
+            //                                            <span class='k-icon k-i-close'></span>
+            //                                        </a>");
+
+        })
+           .ToolBar(toolbar =>
+           {
+               toolbar.Template(
+            @<text>
+                <div class="one-toolbar">
+
+                    <button type="button" class="k-button one-grid-add">
+                        <i class="icon-magic"></i>@(one.Res.Lang.Btn_Add)
+                    </button>
+
+                    <button type="button" class="k-button one-grid-edit">
+                        <i class="icon-edit"></i>@(one.Res.Lang.Btn_Edit)
+                    </button>
+
+                    <button type="button" class="k-button one-grid-del">
+                        <i class="icon-print"></i>@(one.Res.Lang.Btn_Del)
+                    </button>
+
+                    @*<button type="button" class="k-button one-grid-lock">
+                        <i class="icon-lock"></i>@(one.Res.Lang.Btn_LockOrUnlock)
+                    </button>*@
+
+                </div>
+
+
+            </text>
+            );
+           })
+
+
+                            .Editable(editable => editable
+                                .Mode(GridEditMode.PopUp)
+                                .TemplateName("_EditUserInfo")
+                                .Window(a => a.Title(Lang.ModifyUserProfile)
+                                 .Animation(animation =>
+                                 {
+                                     animation.Open(open =>
+                                     {
+                                         if (ViewBag.animation == "expand")
+                                         {
+                                             open.Expand(ExpandDirection.Vertical);
+                                             open.Duration(1);
+                                         }
+
+                                         if (ViewBag.animation == "zoom")
+                                         {
+                                             open.Zoom(ZoomDirection.In);
+                                         }
+
+                                         //if (ViewBag.opacity)
+                                         //{
+                                         //    open.Fade(FadeDirection.In);
+                                         //}
+                                     });
+
+                                     animation.Close(close =>
+                                     {
+                                         close.Reverse(true);
+                                         if (ViewBag.animation == "expand")
+                                         {
+                                             close.Expand(ExpandDirection.Vertical);
+                                             close.Duration(1);
+                                         }
+
+                                         if (ViewBag.animation == "zoom")
+                                         {
+                                             close.Zoom(ZoomDirection.Out);
+                                             close.Reverse(false);
+                                         }
+
+                                         //if (ViewBag.opacity)
+                                         //{
+                                         //    close.Fade(FadeDirection.In);
+                                         //}
+
+                                     });
+                                 })
+                                    //.Animation(animation =>
+                                    //{
+
+                                    //    animation.Open(open =>
+                                    //    {
+                                    //        open.SlideIn(SlideDirection.Left);
+
+                                    //    });
+
+                                    //    animation.Close(close =>
+                                    //    {
+                                    //        close.SlideIn(SlideDirection.Right);
+                                    //    });
+
+                                    //})
+                                    ))
+
+                .Pageable(p => p.Input(true)
+                    .Numeric(true)
+                    .PageSizes(new[] { 30, 50, 120 })
+                    .Refresh(true).Info(true).
+                    Messages(a =>
+                    {
+                        a.ItemsPerPage(one.Res.Lang.Page_ItemsPerPage);
+                        a.Page(one.Res.Lang.Page_Page);
+                        a.Of(one.Res.Lang.Page_of);
+                        a.Display(one.Res.Lang.Page_Display);
+                    }))
+                    .Navigatable()
+                    .Sortable()
+                    .Selectable()
+                    .Scrollable(scr => scr.Height(580))
+                    .Filterable(a => a.Extra(false)
+                        .Operators(operators => operators
+                            .ForString(str =>
+                                str.Clear()
+                                .Contains(one.Res.Lang.Flt_Contains)
+                                .DoesNotContain(one.Res.Lang.Flt_NotContain)
+                                .IsEqualTo(one.Res.Lang.Flt_IsSqualTo)
+                                .IsNotEqualTo(one.Res.Lang.Flt_IsNotSqualTo)
+                                .EndsWith(one.Res.Lang.Flt_EndsWith)
+                                .StartsWith(one.Res.Lang.Flt_StartsWith)
+                                )
+                            .ForDate(date => date.Clear()
+                                .IsGreaterThan(one.Res.Lang.Flt_Date_gt)
+                                .IsEqualTo(one.Res.Lang.Flt_IsSqualTo)
+                                .IsLessThan(one.Res.Lang.Flt_Date_lt)
+                                )
+                            .ForNumber(num => num.Clear()
+                                .IsEqualTo(one.Res.Lang.Flt_IsSqualTo)
+                                .IsGreaterThan(one.Res.Lang.Flt_gt)
+                                .IsGreaterThanOrEqualTo(one.Res.Lang.Flt_gte)
+                                .IsLessThan(one.Res.Lang.Flt_lt)
+                                .IsLessThanOrEqualTo(one.Res.Lang.Flt_lte)
+                                .IsNotEqualTo(one.Res.Lang.Flt_IsNotSqualTo)
+                                )
+                            .ForEnums(enu => enu.IsEqualTo(one.Res.Lang.Flt_IsSqualTo)
+                                .IsNotEqualTo(one.Res.Lang.Flt_IsNotSqualTo))
+                                )
+                            .Messages(m => m
+                                .Filter(one.Res.Lang.Flt_msg_fliter)
+                                .Clear(one.Res.Lang.Flt_msg_clear)
+                                .SelectValue(one.Res.Lang.Flt_msg_selectValue)
+                                .Info(one.Res.Lang.Flt_msg_info)
+                                .And(one.Res.Lang.Flt_msg_and)
+                                .Or(one.Res.Lang.Flt_msg_or)
+                                .IsFalse(one.Res.Lang.Flt_msg_false)
+                                .IsTrue(one.Res.Lang.Flt_msg_true)
+                                ))
+                     // .Events(evt => evt.Edit("gridEdit"))
+                     //.Events(e => e.Change("onChangeForReselect"))
+                     .DataSource(dataSource => dataSource
+                         .Ajax()
+                         .PageSize(30)
+                         //.AutoSync(true)
+                         .Sort(sort => sort.Add("UserId").Descending())
+                        //.Filter(filter => filter.Add(a => a.State).IsEqualTo(4))
+                        //.ServerOperation(false)
+                        .Events(events => events
+                            .RequestEnd("kendoRequestBack")
+                            )
+                         .Model(model =>
+                         {
+                             model.Id(p => p.UserId);
+                             model.Field(p => p.UserId).Editable(false);
+                         })
+                     //.Group(g => g.Add(ad => ad.CategoryId))
+                     .Read(read => read.Action("read_UserInfo", "manager", new { area = "dashboard" }))
+                             .Create(create => create.Action("update_UserInfo", "manager", new { area = "dashboard" }))
+                             .Update(update => update.Action("update_UserInfo", "manager", new { area = "dashboard" }))
+                             .Destroy(destroy => destroy.Action("destroy_UserInfo", "manager", new { area = "dashboard" }))
+                     )
+    // .ClientDetailTemplateId("template")
+    // .Events(e => e.DetailExpand("detailExpand"))
+
+    //.Events(e => e.DataBound("function(){  resizeGrid('GridHotelQuotationDescribe',50);}"))
+    //  .Events(e => e.Change("onGridRowChange"))
+    )
+
+

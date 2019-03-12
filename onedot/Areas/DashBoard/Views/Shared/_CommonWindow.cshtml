@@ -1,0 +1,46 @@
+﻿@model one.Core.ParamCommonWin
+
+@(Html.Kendo().Window()
+    .Name(Model.Name)
+    .Title(Model.Title)
+    .LoadContentFrom(Model.Action, Model.Controller, new { area = Model.Area })
+    .Content("loading user info...")
+    .Draggable()
+    .Iframe(false)
+    .Modal(true)
+    .Animation(false)
+    .Visible(false)
+    .Events(ev => ev.Close("onClose"))
+    .Height(Model.WHeight)
+    .Width(Model.WWidth)
+    
+    //.HtmlAttributes(new { style =" height:100%;width:100%;" })
+//.Resizable()
+//.HtmlAttributes(new { 
+//    style="width:"+Model.WWidth+"px;height:"+Model.WHeight+"px; overflow:hidden;"
+//})
+
+)
+
+<script>
+
+    function IniPosition() {
+         $("#" + "@(Model.Name)").closest(".k-window").css({
+            top: (document.documentElement.clientHeight - @Model.WHeight)/2 * 0.6 + "px",
+            left:(document.documentElement.clientWidth   - @Model.WWidth) / 2 + "px" });
+    }
+
+
+    setTimeout("IniPosition()");
+
+
+    function onClose(e) {
+        var sender = e.sender, id = sender.element[0].id;
+        var win = $("#" + id).data("kendoWindow");
+       // IniPosition();
+    }
+
+
+    @(Html.Raw(Model.js))
+
+</script>

@@ -1,0 +1,64 @@
+﻿    
+
+@(Html.Kendo().Grid<one.Service.ViewRole>()
+    .Name("gridRoles")
+    
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.RoleName).Title("角色名称").Width(180);
+        columns.Bound(p => p.Describe).Title("角色描述");
+    })
+       .ToolBar(toolbar =>
+       {
+       toolbar.Template(
+                @<text>
+                   
+                        <button class="k-button one-grid-add" title = "添加新纪录！">
+                            <i class="icon-magic"></i>
+                            @(one.Res.Lang.Btn_Add)
+                        </button>
+                        <button class="k-button one-grid-edit" title="编辑当前记录！">
+                            <i class="icon-edit"></i>
+                            @(one.Res.Lang.Btn_Edit)
+                        </button>
+
+                        <button class="k-button one-grid-delete" title="删除当前记录！">
+                            <i class="icon-remove"></i>
+                            @(one.Res.Lang.Btn_Del)
+                        </button>
+                    
+                </text>
+            );
+       })
+
+    .HtmlAttributes(new { style = "float:left;"})
+
+    .Editable(editable => editable
+            .Mode(GridEditMode.PopUp)
+            .TemplateName("_EditRoles")
+            .Window(a =>
+            a.Title(Lang.RolesManage).Modal(false).HtmlAttributes(new { style="overflow:hidden;"})
+            )
+              )
+    .Pageable()
+    .Selectable()
+    .Sortable()
+    .Scrollable(s=>s.Height(388))
+    .Pageable(p=>p.Refresh(true))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        //.Events(events => events.Error("error_handler"))
+        .Events(events => events.RequestEnd("kendoRequestBack"))
+        .Model(model => model.Id(p => p.RoleId))
+        .Create(update => update.Action("update_roles", "manager", new { area = "dashboard" }))
+        .Read(read => read.Action("read_Roles", "manager", new { area = "dashboard" }))
+        .Update(update => update.Action("update_roles", "manager", new { area = "dashboard" }))
+        .Destroy(destroy => destroy.Action("Destroy_roles", "manager", new { area = "dashboard" }))
+    )
+    )
+
+
+
+
+

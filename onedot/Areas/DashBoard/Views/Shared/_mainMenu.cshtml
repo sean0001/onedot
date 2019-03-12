@@ -1,0 +1,350 @@
+﻿<div id="organizer">
+
+    @(Html.Kendo().PanelBar()
+        .Name("mainmenu")
+        .ExpandMode(PanelBarExpandMode.Single)
+        .HtmlAttributes(new { style = "width:100%" })
+        .Events(e => e.Select("bar_onSelect"))
+        .Items(panelbar =>
+        {
+            panelbar.Add().Text("权限中心")
+                .Content(@<text>
+
+                    <a class="k-link" href="@(Url.Action("RoleFunc", "Manager", new { Area = "DashBoard" }))">
+                        <div class="teamMate k-button">
+                            <img src="@Url.Content("~/images/andrew.jpg")" width="36" alt="Andrew Fuller">
+                            <nav>
+                                <h4>角色权限设置</h4>
+                                <p title="发布中心新闻、中心动态">发布中心新闻、中心活动</p>
+
+                            </nav>
+                        </div>
+                    </a>
+
+
+                    <a class="k-link" href="@(Url.Action("UserRole", "Manager", new { Area = "DashBoard" }))">
+                        <div class="teamMate k-button">
+                            <img src="@Url.Content("~/images/andrew.jpg")" width="32" alt="Andrew Fuller">
+                            <nav>
+                                <h4>用户角色设置</h4>
+                                <p title="编辑发布的新闻信息">编辑发布的新闻信息</p>
+
+                            </nav>
+                        </div>
+                    </a>
+
+                    <a class="k-link" href="@(Url.Action("UserInfo", "Manager", new { Area = "DashBoard" }))">
+                        <div class="teamMate k-button">
+                            <img src="@Url.Content("~/images/andrew.jpg")" width="32" alt="Andrew Fuller">
+                            <nav>
+
+                                <h4>用户管理</h4>
+                                <p title="编辑发布的新闻信息">编辑发布的新闻信息</p>
+
+                            </nav>
+                        </div>
+                    </a>
+
+
+                    <a class="k-link" href="@(Url.Action("sysmenu", "Manager", new { Area = "DashBoard" }))">
+                        <div class="teamMate k-button">
+                            <img src="@Url.Content("~/images/andrew.jpg")" width="32" alt="Andrew Fuller">
+                            <nav>
+
+                                <h4>系统功能菜单</h4>
+                                <p title="系统功能菜单">编辑系统功能菜单</p>
+                            </nav>
+                        </div>
+                    </a>
+
+                </text>);
+
+
+panelbar.Add().Text("系统配置管理")
+.Content(@<text>
+
+            <a class="k-link" href="@(Url.Action("index", "SysConfig", new { Area = "dashboard" }))">
+                <div class="teamMate k-button">
+                    <img src="@Url.Content("~/images/andrew.jpg")" width="36" alt="Andrew Fuller">
+                    <nav>
+                        <h4>系统参数</h4>
+                        <p title="系统参数设置">系统参数设置</p>
+
+                    </nav>
+                </div>
+            </a>
+
+            <a class="k-link" href="@(Url.Action("index", "Cachemana", new { Area = "dashboard" }))">
+                <div class="teamMate k-button">
+                    <img src="@Url.Content("~/images/andrew.jpg")" width="36" alt="Andrew Fuller">
+                    <nav>
+
+                        <h4>缓存管理</h4>
+                        <p title="对网站的缓存数据进行维护">对网站的缓存数据进行维护</p>
+
+                    </nav>
+                </div>
+            </a>
+
+            <a class="k-link" href="@(Url.Action("index", "Logger", new { Area = "dashboard" }))">
+                <div class="teamMate k-button">
+                    <img src="@Url.Content("~/images/andrew.jpg")" width="36" alt="Andrew Fuller">
+                    <nav>
+
+                        <h4>日志管理</h4>
+                        <p title="查看系统操作日志">查看系统操作日志</p>
+
+                    </nav>
+                </div>
+            </a>
+
+</text>);
+
+
+
+
+
+
+
+            panelbar.Add().Text("用户中心")
+            .Content(@<text>
+                    <a class="k-link" href="@(Url.Action("userProfile", "user", new { Area = "dashboard" }))">
+                        <div class="teamMate k-button">
+                            <img src="@Url.Content("~/images/andrew.jpg")" width="36" alt="Andrew Fuller">
+                            <nav>
+
+                                <h4>个性与安全</h4>
+                                <p title="浏览和查看注册用户">查看、管理注册用户信息</p>
+
+                            </nav>
+                        </div>
+                    </a>
+
+                    <a class="k-link" href="@(Url.Action("message", "mess", new { Area = "dashboard" }))">
+                        <div class="teamMate k-button">
+                            <img src="@Url.Content("~/images/andrew.jpg")" width="36" alt="Andrew Fuller">
+                            <nav>
+
+                                <h4>消息中心</h4>
+                                <p title="浏览和查看注册用户">查看、管理用户的反馈信息</p>
+
+                            </nav>
+                        </div>
+                    </a>
+        </text>);
+
+
+
+panelbar.Add().Text("数据操作管理")
+          .Content(@<text>
+            <a class="k-link" href="@(Url.Action("index", "data", new { Area = "admin" }))">
+                <div class="teamMate k-button">
+                    <img src="@Url.Content("~/images/andrew.jpg")" width="36" alt="Andrew Fuller">
+                    <nav>
+
+                        <h4>上传数据</h4>
+                        <p title="上传数据中心的数据文件">上传数据中心的数据文件</p>
+
+                    </nav>
+                </div>
+            </a>
+
+            <a class="k-link" href="@(Url.Action("dataMana", "data", new { Area = "admin" }))">
+                <div class="teamMate k-button">
+                    <img src="@Url.Content("~/images/andrew.jpg")" width="32" alt="Andrew Fuller">
+                    <nav>
+
+                        <h4>数据管理</h4>
+                        <p title="编辑上传的数据信息">编辑上传的数据信息</p>
+
+                    </nav>
+                </div>
+            </a>
+
+            <a class="k-link" href="@(Url.Action("applyMana", "data", new { Area = "admin" }))">
+                <div class="teamMate k-button">
+                    <img src="@Url.Content("~/images/andrew.jpg")" width="32" alt="Andrew Fuller">
+                    <nav>
+
+                        <h4>下载管理</h4>
+                        <p title="审批用户的数据下载申请">审批用户的数据下载申请</p>
+
+                    </nav>
+                </div>
+            </a>
+        </text>);
+
+
+
+
+        })
+)
+</div>
+
+
+
+
+<script>
+
+
+
+
+
+
+
+    $(function () {
+        mainPanelBar = $("#mainmenu").data("kendoPanelBar");
+        var cookieValue = $.cookie('currentMenu')
+        if (cookieValue) {
+            cookieValue = cookieValue.replace(/_/g, '/');
+            var div = $("#mainmenu").find("[href='" + cookieValue + "']").children("div");
+            div.addClass("k-state-selected k-state-focused");
+        }
+        
+    })
+
+
+    $(".teamMate").bind("click", function () {
+
+        var c = $(this).closest("a").attr("href").replace(/\//g, "_");
+        $.cookie("currentMenu", c, { path: '/', expires: 7 });
+    })
+
+
+    function onPanelBarSelect() {
+
+        var item = mainPanelBar.select();
+
+        if (item.hasClass("k-state-active")) {
+            mainPanelBar.collapse(item);
+        } else {
+            mainPanelBar.expand(item);
+        }
+    }
+
+
+
+</script>
+
+
+
+<script>
+
+
+    //把当前选择的panelbar index 记录到cookie当中。
+    function bar_onSelect(e) {
+
+    
+        var item = $(e.item),
+            index = item.parentsUntil(".k-panelbar", ".k-item").map(function () {
+                return $(this).index();
+            }).get().reverse();
+
+        index.push(item.index());
+        // $.cookie("KendoUiPanelBarSelectedIndex", index);
+        $.cookie("KendoUiPanelBarSelectedIndex", index, { path: '/', expires: 7 });
+        //  alert(index);
+    }
+
+
+
+
+
+
+    function bar_select(position) {
+        var ul = panel.element;
+        for (var i = 0; i < position.length; i++) {
+
+            var item = ul.children().eq(position[i]);
+            if (i != position.length - 1) {
+                ul = item.children("ul");
+                if (!ul[0])
+                    ul = item.children().children("ul");
+                    panel.expand(item, false);
+                //  panelBar.collapse(item);
+
+            } else {
+                panel.select(item);
+                panel.expand(item);
+
+            }
+        }
+    }
+
+
+
+    // on page ready select value from cookies
+    $(document).ready(function () {
+
+        panel = $("#mainmenu").kendoPanelBar({
+            select: bar_onSelect,
+            expandMode: "single",
+            animation: {
+                expand: {
+                    duration: 0,
+                    effects: ""
+                }
+            }
+        }).data("kendoPanelBar");
+
+
+        if ($.cookie("KendoUiPanelBarSelectedIndex") != null) {
+
+            var numbersArray = $.cookie("KendoUiPanelBarSelectedIndex").split(',');
+            bar_select(numbersArray);
+        }
+        else {
+            bar_select(0);
+
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+<style>
+
+    
+    
+
+    #mainmenu div.teamMate {
+        width: 100%;
+        margin: 1px 0;
+        border-radius: 0;
+        text-align: left;
+    }
+
+
+    .teamMatek:after {
+        content: ".";
+        display: block;
+        height: 0;
+        line-height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+
+    .teamMate h4 {
+        font-size: 1.2em;
+        padding-top: 5px;
+        margin: 2px;
+        /*color:rgba(0,0,0,0.5);*/
+    }
+
+    .teamMate p {
+        font-size: 0.8em;
+        margin: 2px;
+    }
+
+    .teamMate img {
+        float: left;
+        margin: 7px 7px 5px 5px;
+        border: 1px solid #ccc;
+    }
+</style>

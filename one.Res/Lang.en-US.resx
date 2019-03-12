@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessFailedCount" xml:space="preserve">
+    <value>Access Failed Count</value>
+    <comment>1111111111111111111111111111111111111</comment>
+  </data>
+  <data name="Btn_Add" xml:space="preserve">
+    <value>Add New</value>
+    <comment>1231</comment>
+  </data>
+  <data name="Btn_Del" xml:space="preserve">
+    <value>Delete</value>
+    <comment>12313</comment>
+  </data>
+  <data name="Btn_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Btn_Export" xml:space="preserve">
+    <value>Export..</value>
+    <comment>1231</comment>
+  </data>
+  <data name="Btn_Lock" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="Btn_LockOrUnlock" xml:space="preserve">
+    <value>Lock/Unlock</value>
+    <comment>31231</comment>
+  </data>
+  <data name="Btn_Modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="Btn_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Btn_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Btn_Search" xml:space="preserve">
+    <value>Query</value>
+    <comment>3</comment>
+  </data>
+  <data name="Btn_Unlock" xml:space="preserve">
+    <value>Unlock</value>
+  </data>
+  <data name="CreateBy" xml:space="preserve">
+    <value>Create By</value>
+  </data>
+  <data name="CreateTime" xml:space="preserve">
+    <value>Create Time</value>
+  </data>
+  <data name="CreateTime_Title" xml:space="preserve">
+    <value>Time Create The Record</value>
+    <comment>234</comment>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Describe" xml:space="preserve">
+    <value>Describe</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Email Confirmed</value>
+  </data>
+  <data name="Flt_Contains" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="Flt_Date_gt" xml:space="preserve">
+    <value>Is after</value>
+  </data>
+  <data name="Flt_Date_gte" xml:space="preserve">
+    <value>Is after or equal to</value>
+  </data>
+  <data name="Flt_Date_lt" xml:space="preserve">
+    <value>Is before</value>
+  </data>
+  <data name="Flt_Date_lte" xml:space="preserve">
+    <value>Is before or equal to</value>
+  </data>
+  <data name="Flt_EndsWith" xml:space="preserve">
+    <value>Ends with</value>
+  </data>
+  <data name="Flt_gt" xml:space="preserve">
+    <value>Is greater than</value>
+  </data>
+  <data name="Flt_gte" xml:space="preserve">
+    <value>Is greater than or equal to</value>
+  </data>
+  <data name="Flt_IsNotSqualTo" xml:space="preserve">
+    <value>Is not equal to</value>
+  </data>
+  <data name="Flt_IsSqualTo" xml:space="preserve">
+    <value>Is equal to</value>
+  </data>
+  <data name="Flt_lt" xml:space="preserve">
+    <value>Is less than</value>
+  </data>
+  <data name="Flt_lte" xml:space="preserve">
+    <value>Is less than or equal to</value>
+  </data>
+  <data name="Flt_msg_and" xml:space="preserve">
+    <value>And</value>
+  </data>
+  <data name="Flt_msg_clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Flt_msg_false" xml:space="preserve">
+    <value>is false</value>
+  </data>
+  <data name="Flt_msg_fliter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Flt_msg_info" xml:space="preserve">
+    <value>Show items with value that：</value>
+  </data>
+  <data name="Flt_msg_or" xml:space="preserve">
+    <value>Or</value>
+  </data>
+  <data name="Flt_msg_selectValue" xml:space="preserve">
+    <value>--Select Value--</value>
+  </data>
+  <data name="Flt_msg_true" xml:space="preserve">
+    <value>is true</value>
+  </data>
+  <data name="Flt_NotContain" xml:space="preserve">
+    <value>Does not contain</value>
+  </data>
+  <data name="Flt_StartsWith" xml:space="preserve">
+    <value>Starts with</value>
+  </data>
+  <data name="Grid_MustSelectAnyRow" xml:space="preserve">
+    <value>Must be select one Record</value>
+  </data>
+  <data name="LastUpdateBy" xml:space="preserve">
+    <value>Update by</value>
+  </data>
+  <data name="LastUpdateTime" xml:space="preserve">
+    <value>Update Time</value>
+  </data>
+  <data name="LockoutEnabled" xml:space="preserve">
+    <value>If Locked</value>
+  </data>
+  <data name="LockoutEndDateUtc" xml:space="preserve">
+    <value>Lock out end date</value>
+  </data>
+  <data name="ModifyUserProfile" xml:space="preserve">
+    <value>Modify user Profile</value>
+  </data>
+  <data name="Page_Display" xml:space="preserve">
+    <value>Current {0}-{1} Rows,Total {2} Rows</value>
+  </data>
+  <data name="Page_ItemsPerPage" xml:space="preserve">
+    <value>Item Per Page</value>
+  </data>
+  <data name="Page_of" xml:space="preserve">
+    <value>Page of {0} Pages</value>
+  </data>
+  <data name="Page_Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>Phone Number Confirmed</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Account</value>
+  </data>
+  <data name="Desktop" xml:space="preserve">
+    <value>Desktop</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="LoggonOut" xml:space="preserve">
+    <value>Loggon out</value>
+  </data>
+  <data name="BelongToRoles" xml:space="preserve">
+    <value>Belong To Roles</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Btn_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Btn_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="SetUserRoles" xml:space="preserve">
+    <value>Set user roles</value>
+  </data>
+  <data name="Btn_EditRoles" xml:space="preserve">
+    <value>Edit Roles...</value>
+  </data>
+  <data name="RolesManage" xml:space="preserve">
+    <value>Roles Manage</value>
+  </data>
+  <data name="RoleDescribe" xml:space="preserve">
+    <value>Role Describe</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="FuncCaption" xml:space="preserve">
+    <value>Function Caption</value>
+  </data>
+  <data name="FuncDescribe" xml:space="preserve">
+    <value>Function Describe</value>
+  </data>
+  <data name="FuncTitle" xml:space="preserve">
+    <value>Function Title</value>
+  </data>
+  <data name="ImgScr" xml:space="preserve">
+    <value>Image Scr</value>
+  </data>
+  <data name="ModuleName" xml:space="preserve">
+    <value>Model Name</value>
+  </data>
+  <data name="NetRequestType" xml:space="preserve">
+    <value>Request Type</value>
+  </data>
+  <data name="RouteAction" xml:space="preserve">
+    <value>Route Action</value>
+  </data>
+  <data name="RouteArea" xml:space="preserve">
+    <value>Route Area</value>
+  </data>
+  <data name="RouteController" xml:space="preserve">
+    <value>Route Controller</value>
+  </data>
+  <data name="RouteDefaultParam" xml:space="preserve">
+    <value>Route Default Param</value>
+  </data>
+  <data name="SortNo" xml:space="preserve">
+    <value>Sort No</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="ParentId" xml:space="preserve">
+    <value>Parent Node Id</value>
+  </data>
+  <data name="StyleAndSafety" xml:space="preserve">
+    <value>Style &amp; Safety</value>
+  </data>
+  <data name="UserProfile" xml:space="preserve">
+    <value>User Profile</value>
+  </data>
+  <data name="RegisterTime" xml:space="preserve">
+    <value>Register Time</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Btn_SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="Btn_regist" xml:space="preserve">
+    <value>Regist</value>
+  </data>
+  <data name="Btn_submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>Mobile Number</value>
+  </data>
+  <data name="QQNumber" xml:space="preserve">
+    <value>QQ Number</value>
+  </data>
+  <data name="NickName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="OperationFailure" xml:space="preserve">
+    <value>Operation Failure.</value>
+  </data>
+  <data name="OperationSuccess" xml:space="preserve">
+    <value>Operation Success.</value>
+  </data>
+  <data name="PageCache" xml:space="preserve">
+    <value>Page Cache</value>
+  </data>
+  <data name="SecondDataCache" xml:space="preserve">
+    <value>Second Data Cache</value>
+  </data>
+  <data name="ClearAll" xml:space="preserve">
+    <value>Clear All</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="DefaultCache" xml:space="preserve">
+    <value>Default Cache</value>
+  </data>
+  <data name="ClearLogger" xml:space="preserve">
+    <value>Clear Logger</value>
+  </data>
+  <data name="CacheParameter" xml:space="preserve">
+    <value>Caching Parameter</value>
+  </data>
+  <data name="Config" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="EmailParameter" xml:space="preserve">
+    <value>Email Parameter</value>
+  </data>
+  <data name="GeneralParam" xml:space="preserve">
+    <value>General Parameter</value>
+  </data>
+  <data name="ClearTableContent" xml:space="preserve">
+    <value>Are you sure clear all data in follow table</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me！</value>
+  </data>
+  <data name="ForgotPwd" xml:space="preserve">
+    <value>Forgot Password?</value>
+  </data>
+  <data name="Btn_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Pwd" xml:space="preserve">
+    <value>Password</value>
+  </data>
+</root>

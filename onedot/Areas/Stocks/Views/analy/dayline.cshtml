@@ -1,0 +1,381 @@
+﻿
+@model IEnumerable<one.OneDot.Areas.Stocks.Repository._singleDayLine>
+@{
+    ViewBag.Title = "dayline";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<link href="~/Content/kendo/2013020918/kendo.common.css" rel="stylesheet" />
+<link id="cssSelectLink" href="~/Content/kendo/2013020918/kendo.bootstrap.min.css" rel="stylesheet" />*@
+
+
+@*@Scripts.Render("~/Scripts/extend")*@
+<br />
+<br />
+
+@*<embed src="http://finance.sina.com.cn/flash/cn.swf?symbol=sz000002"
+       quality="high" type="application/x-shockwave-flash" allowscriptaccess="always"  allowfullscreen="true" wmode="opaque" width="1900" height="700"></embed>*@
+@*<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>*@
+
+
+
+<script src="~/Scripts/highStock/highstock.js"></script>
+<script src="~/Scripts/highStock/exporting.js"></script>
+
+
+
+
+
+<div id="container" style="height: 750px; min-width: 310px"></div>
+
+
+
+
+<script>
+    //https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-ohlcv.json&callback=?
+
+    $.getJSON('@(Url.Action("getStock", "analy", new {area = "stocks" }))',
+        function (data) {
+
+        // split the data set into ohlc and volume
+        var ohlc = [],
+            volume = [],
+            dataLength = data.length,
+            // set the allowed units for data grouping
+            groupingUnits = [
+                ['day', [1]],
+                ['month', [1, 2, 3, 4, 6]]
+            ],
+            i = 0;
+
+        for (i; i < dataLength; i += 1) {
+            ohlc.push([
+                data[i].Date.replace(/[^0-9]/g, ""),
+                data[i].Open,
+                data[i].High,
+                data[i].Low,
+                data[i].Close
+               
+            ]);
+
+            volume.push([
+                data[i].Date.replace(/[^0-9]/g, ""), // the date
+                data[i].Volume // the volume
+            ]);
+        }
+
+        // create the chart
+        console.info(volume);
+
+        Highcharts.stockChart('container', {
+            rangeSelector: {
+                selected: 1
+            },
+
+            //global: {
+            //    useUTC: false
+            //},
+
+            navigator: {
+                adaptToUpdatedData: true,
+                series: {
+                    data: volume
+                }
+            },
+
+
+            rangeSelector: {
+                allButtonsEnabled: true,
+                buttons: [{
+                    type: 'day',
+                    count: 1,
+                    text: 'Day',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['day', [1]]]
+                    }
+                }
+                    , {
+                    type: 'week',
+                    count: 7,
+                    text: '30days',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['month', [30]]]
+                    }
+                }, {
+                    type: 'month',
+                    count: 1,
+                    text: '10days',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['day', [10]]]
+                    }
+                    }
+                ],
+
+                buttonTheme: {
+                    width: 60
+                },
+                selected: 1
+            },
+
+
+            title: {
+                text: 'AAPL Historical'
+            },
+
+
+            xAxis: {
+                dateTimeLabelFormats:{day: '%Y<br/>%m-%d'},
+                range: 24 * 30 * 24 * 3600 * 1000,
+                minTickInterval: 24 * 3600 * 1000,
+                type: 'datetime',
+                labels: {
+                    format: '{value:%y-%m-%d}',
+                    rotation: 45,
+                    align: 'left'
+                }
+            },
+      
+
+
+            //dateTimeLabelFormats: {
+            //    second: '%Y-%m-%d<br/>%H:%M:%S',
+            //    minute: '%Y-%m-%d<br/>%H:%M',
+            //    hour: '%Y-%m-%d<br/>%H:%M',
+            //    day: '%Y<br/>%m-%d',
+            //    week: '%Y<br/>%m-%d',
+            //    month: '%Y-%m',
+            //    year: '%Y'
+            //}
+
+
+
+
+            yAxis: [{
+                labels: {
+                    align: 'right',
+                    x: -3
+                },
+                title: {
+                    text: 'OHLC'
+                },
+                height: '70%',
+                lineWidth: 2
+            }, {
+                labels: {
+                    align: 'right',
+                    x: -3
+                },
+                title: {
+                    text: 'Volume'
+                },
+                top: '65%',
+                height: '25%',
+                offset: 0,
+                lineWidth: 2
+            }],
+
+            tooltip: {
+                split: true
+            },
+
+            series: [{
+                type: 'candlestick',
+                name: 'AAPL',
+                data: ohlc,
+                dataGrouping: {
+                    units: groupingUnits
+                }
+            }, {
+                showInNavigator: true,
+                type: 'column',
+                name: 'Volume',
+                data: volume,
+                yAxis: 1,
+                dataGrouping: {
+                    units: groupingUnits
+                }
+            }]
+        }
+
+        //, function (chart) {
+        ////console.log(chart);
+        //    chart.xAxis[1].setExtremes(Date.UTC(2000, 8, 26), Date.UTC(2003, 9, 3));
+        //}
+        );
+        }
+    
+        
+        
+        );
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@(Html.Kendo().StockChart(Model)
+        .Name("stockChart")
+        .Title("The Boeing Company (NYSE:BA)")
+        //.DataSource(ds => ds.Read(read => read
+        //    .Action("_BoeingStockData", "Financial")
+        //))
+        .DateField("Date")
+
+        //.YAxis(x=>x
+        //    .Numeric()
+        //    .Crosshair(c => c.Tooltip(t => t.Border(1, "#666").Visible(true)).Visible(true).Width(1))
+        //    )
+
+        .XAxis(s => s
+            .Date().BaseUnit(ChartAxisBaseUnit.Days)
+            .Crosshair(c => c.Tooltip(t => t.Border(1, "#666").Visible(true)).Visible(true).Width(1))
+            )
+
+        .Panes(panes =>
+        {
+            panes.Add("linePane").Title("Value").Height(500);
+            panes.Add("volumePane").Title("Volume");
+        })
+
+        .CategoryAxis(axis => axis.Pane("volumePane"))
+
+
+        .ValueAxis(axis =>
+               axis.Numeric("linePane").Line(s=>s.Visible(false))
+         //.Crosshair(c => c.Tooltip(t => t.Border(111, "#666666").Visible(true)).Visible(true).Width(1))
+         //.Crosshair(s=>s.Tooltip(t=>t.Border(1,"#777777").Visible(true)).Width(100))
+         //.Crosshair(s => s.Tooltip(t => t.Border(1, "#666").Visible(true)).Visible(true).Width(1))
+         )
+
+        .ValueAxis(axis =>
+                axis.Numeric("volumeAxis").Pane("volumePane").Visible(false)
+                .Crosshair(s => s.Tooltip(t => t.Border(1, "#666").Visible(true)).Visible(true).Width(1))
+        )
+
+
+        .Series(series =>
+        {
+            series.Candlestick(s => s.Open, s => s.High, s => s.Low, s => s.Close);
+            series.Column(s => s.Volume).Axis("volumeAxis")
+                    .Tooltip(tooltip => tooltip.Format("{0:C0}"));
+        })
+//.Navigator(nav => nav
+//    .Series(series => 
+//    {
+//        series.Area(s => s.Close).Aggregate(ChartSeriesAggregate.Sum);
+
+//    })
+//    .Select(
+//        DateTime.Parse("2017/05/01"),
+//        DateTime.Parse("2017/9/22")
+//    )
+
+//)
+
+
+)*@
+
+
+
+
+@*<style>
+    #stockChart {
+        height: 900px;
+    }
+</style>
+<script>
+    $(function () {
+        $(document).bind("kendo:skinChange", updateTheme);
+    });
+
+    function updateTheme() {
+        $("#stockChart").getKendoStockChart().setOptions({ theme: kendoTheme });
+    }
+</script>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@(Html.Kendo().Chart(Model)
+        .Name("dayline")
+        .Title("日线")
+        .HtmlAttributes(new { style = "height:600px; left:20px;" })
+        .Series(series =>
+        {
+            //series.Pie("orderNum", "name", "color");
+            series.Line(a => a.Close).Name("价格").DashType(ChartDashType.Solid).Width(1).Markers(s => s.Size(1));
+
+            //series.Column(m => m.name).Name("name").Stack(true);
+
+
+
+            // .GroupNameTemplate("#= group.value # (#= series.name #)");
+        })
+
+                .Legend(legend => legend
+                    .Position(ChartLegendPosition.Bottom).Margin(0).Visible(false)
+
+                )
+
+            .CategoryAxis(axis => axis
+               .Categories(model => model.Date).Visible(false)
+            )
+
+        //.SeriesColors(Model.Select(a => a.color))
+        //.ValueAxis(axis => axis
+        //    .Numeric().Labels(labels => labels.Format("{0}").Color("#fff"))
+        //)
+
+        .ChartArea(a => a.Background("transparent").Margin(0).Width(1900).Height(800))
+        .Tooltip(tooltip => tooltip
+            .Template("#= kendo.toString(category,'yyyy-MM-dd') #:    #=value#")
+
+            //.Format("#= name #")
+            .Shared(false)
+            .Color("#FFF")
+            //  .Opacity(0.8)
+            .Visible(true)
+        )
+
+)*@

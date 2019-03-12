@@ -1,0 +1,58 @@
+﻿@Html.PanelBlock()
+
+
+
+<button id="alertBtn" class="k-button">myalert</button>
+<button id="confirmBtn" class="k-button">myconfirm</button>
+<button id="promptBtn" class="k-button">myprompt</button>
+
+<script>
+
+    $("#alertBtn").on("click", function () {
+
+      window.myalert("This is a Kendo UI Alert message!");
+
+  });
+
+    $("#confirmBtn").on("click", function () {
+
+        window.myconfirm("Are you sure that you want to proceed?").then(function () {
+
+            window.myalert("Operation done!");
+
+    }, function () {
+      window.myalert("You chose to Cancel action.");
+    });
+  });
+
+  $("#promptBtn").on("click", function () {
+    window.myprompt("Please, enter a arbitrary value:", "any value").then(function (data) {
+      window.myalert(kendo.format("The value that you entered is '{0}'", data));
+    }, function () {
+      window.myalert("Cancel entering value.");
+    })
+  });
+
+  function myalert(content){
+    $("<div></div>").kendoAlert({
+      title: "My Title",
+      content: content
+    }).data("kendoAlert").open();
+  }
+
+  function myconfirm(content){
+    return $("<div></div>").kendoConfirm({
+      title: "My Title",
+      content: content
+    }).data("kendoConfirm").open().result;
+  }
+
+    function myprompt(content, defaultValue) {
+        return $("<div></div>").kendoPrompt({
+            title: "My Title",
+            value: defaultValue,
+            content: content
+        }).data("kendoPrompt").open().result;
+    }
+
+</script>

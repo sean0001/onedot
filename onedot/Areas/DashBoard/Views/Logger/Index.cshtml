@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/DashBoard/Views/Shared/_LayoutDash.cshtml";
+    string w = "12px";
+}
+
+@(Html.Kendo().TabStrip().Name("tabLogger")
+    // .HighlightPath(true)
+    .Animation(false)
+    .HtmlAttributes(new { style = "height:100%;" })
+    .SelectedIndex(0)
+    // .Events(e=>e.Select("resizeTabs"))
+    .Items(i =>
+    {
+
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+          .Text("操作日志")
+          .LoadContentFrom("LoggerOperation", "Logger", new { Area = "dashboard", status = 1 })
+          .ContentHtmlAttributes(new { style = "height:100%;" });
+
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+           .Text("信息日志")
+           .LoadContentFrom("LoggerInfo", "Logger", new { Area = "dashboard", status = 2 })
+           .ContentHtmlAttributes(new { style = "height:100%;" });
+
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+            .Text("错误日志")
+            .LoadContentFrom("LoggerError", "Logger", new { Area = "dashboard", status = 3 })
+            .ContentHtmlAttributes(new { style = "height:100%;" });
+    })
+
+)
+
+<script>
+
+    $(function () {
+
+        $("#tabLogger").delegate('.delete-logger-all', 'click',
+            function (e) {
+
+   
+
+                if (!confirm("@Lang.ClearTableContent")) return false;
+
+                e.preventDefault();
+                grid = $("#" + $(e.target).closest(".k-grid").attr("id")).data("kendoGrid");
+                ///dashBoard/logger/Delete_LoggerFiles
+                var _url = "@Url.Action("Delete_LoggerFiles", "logger", new { Area = "dashBoard" })";
+                var _data = { status: $(e.target).attr("data-item")}
+
+
+                $.majax({
+                    url: _url,
+                    data: _data,
+                    type: "post",
+                    dataType:"json",
+                    success: function (data, tx, idx) {
+
+                        if (kendoRequestBack(data)) {
+                            grid.dataSource.data([]);
+                        }
+                    }
+                });
+
+               // grid.dataSource.read();
+
+
+
+            });
+    })
+
+
+
+
+
+</script>

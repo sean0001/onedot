@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "userProfile";
+    Layout = "~/Areas/DashBoard/Views/Shared/_LayoutDash.cshtml";
+    string w = "16px";
+
+
+}
+
+@(Html.Kendo().TabStrip().Name("tabUserProfile")
+    // .HighlightPath(true)
+    .Animation(false)
+    .HtmlAttributes(new {  style="height:100%;"})
+    .SelectedIndex(1)
+    // .Events(e=>e.Select("resizeTabs"))
+    .Items(i =>
+    {
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+           .Text(Lang.UserProfile)
+           .LoadContentFrom("ProfileInfo", "user", new { Area = "dashboard"});
+
+        i.Add().HtmlAttributes(new { style = "padding-left:" + w + ";" + "  padding-right:" + w + ";" })
+            .Text(Lang.StyleAndSafety)
+            //.LoadContentFrom("StyleSafety", "user", new { Area = "dashboard" });
+            .LoadContentFrom("StyleAndPassword", "manage", new { Area = string.Empty });
+    })
+
+)
+
+
+<style>
+    .form-control {
+        display: inline-block;
+        width: 60%;
+    }
+
+    span.k-tooltip {
+        position: absolute;
+        display: inline;
+        margin: 5px;
+    }
+</style>

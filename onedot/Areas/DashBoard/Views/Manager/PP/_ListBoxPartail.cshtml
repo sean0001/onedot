@@ -1,0 +1,204 @@
+﻿
+<div class="one-listbox-group">
+    <div class="listbox-left">
+    @Html.ListBox("listtest", new List<SelectListItem>() {
+    new SelectListItem(){ Value = "1", Text = "第一个"},
+    new SelectListItem(){ Value = "2", Text = "第二个"},
+    new SelectListItem(){ Value = "3", Text = "第三个"},
+    new SelectListItem(){ Value = "4", Text = "第四个"},
+    new SelectListItem(){ Value = "5", Text = "第五个"},
+    new SelectListItem(){ Value = "1", Text = "第一个"},
+    new SelectListItem(){ Value = "2", Text = "第二个"},
+    new SelectListItem(){ Value = "3", Text = "第三个"},
+    new SelectListItem(){ Value = "4", Text = "第四个"},
+    new SelectListItem(){ Value = "5", Text = "第五个"},
+    new SelectListItem(){ Value = "1", Text = "第一个"},
+    new SelectListItem(){ Value = "2", Text = "第二个"},
+    new SelectListItem(){ Value = "3", Text = "第三个"},
+    new SelectListItem(){ Value = "4", Text = "第四个"},
+    new SelectListItem(){ Value = "5", Text = "第五个"},
+    new SelectListItem(){ Value = "1", Text = "第一个"},
+    new SelectListItem(){ Value = "2", Text = "第二个"},
+    new SelectListItem(){ Value = "3", Text = "第三个"},
+    new SelectListItem(){ Value = "4", Text = "第四个"},
+    new SelectListItem(){ Value = "5", Text = "第五个"},
+    }, new { style = "min-width:240px;min-height:200px;font-size:1.2em;", @class = "k-list" })
+    </div>
+
+    <div class="listbox-btn">
+        <ul class="move-btn-group">
+            <li>
+                <button id="doRight" type="button" class="btn btn-default">
+                    <i class="icon-angle-right"></i>
+                </button>
+            </li>
+
+            @*<li>
+                    <button id="doRight1" type="button" class="btn btn-default">
+                        <i class="icon-double-angle-right"></i>
+                    </button>
+             </li>*@
+
+            @*<li>
+            </li>*@
+
+
+            <li>
+                <button id="doLeft" type="button" class="btn btn-default">
+                    <i class="icon-angle-left"></i>
+                </button>
+            </li>
+            <li>
+                <button id="btnSave" type="button" class="btn btn-default">
+                    <i class="icon-save"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="listbox-right">
+        @Html.ListBox("listtest2", new List<SelectListItem>() {
+    new SelectListItem(){ Value = "1", Text = "第一个"},
+    new SelectListItem(){ Value = "2", Text = "第二个"},
+    new SelectListItem(){ Value = "3", Text = "第三个"},
+    new SelectListItem(){ Value = "4", Text = "第四个"},
+    new SelectListItem(){ Value = "5", Text = "第五个"},
+    new SelectListItem(){ Value = "1", Text = "第一个"},
+    new SelectListItem(){ Value = "2", Text = "第二个"},
+    new SelectListItem(){ Value = "3", Text = "第三个"},
+    new SelectListItem(){ Value = "4", Text = "第四个"},
+    new SelectListItem(){ Value = "5", Text = "第五个"},
+    new SelectListItem(){ Value = "1", Text = "第一个"},
+    new SelectListItem(){ Value = "2", Text = "第二个"},
+    new SelectListItem(){ Value = "3", Text = "第三个"},
+    new SelectListItem(){ Value = "4", Text = "第四个"},
+    new SelectListItem(){ Value = "5", Text = "第五个"},
+    new SelectListItem(){ Value = "1", Text = "第一个"},
+    new SelectListItem(){ Value = "2", Text = "第二个"},
+    new SelectListItem(){ Value = "3", Text = "第三个"},
+    new SelectListItem(){ Value = "4", Text = "第四个"},
+    new SelectListItem(){ Value = "5", Text = "第五个"},
+    }, new { style = "width:200px;min-height:200px;font-size:1.2em;", @class = "k-list" })
+    </div>
+
+</div>
+
+
+<script>
+
+    (function () {
+
+
+        function move(lstFrom, lstTo) {
+            var selUser = $("#" + lstFrom).val();
+            if (null != selUser && selUser != "") {
+                var selOption = $("#" + lstFrom).find("option:selected");
+                $("#" + lstFrom).find("option:selected").remove();
+                $("#" + lstTo).append(selOption);
+            }
+            else {
+                alert("请选择用户！");
+                return false;
+            }
+        }
+
+       
+            $("#doRight").on("click", function () { move("listtest", "listtest2") });
+            $("#doLeft").on("click", function () { move("listtest2", "listtest") });
+            //保存
+            $("#btnSave").on("click", function () {
+                $("#listtest option").attr("selected", true);
+                var lessonUser = $("#listtest").val();
+                alert(lessonUser);
+                $("#hnUserIds", window.parent.document).val(lessonUser);
+            })
+            $("#btnSearch").on("click", function () {
+                var userName = $.trim($("#txtUserName").val());
+                //已选用户
+                $("#lessonUser option").attr("selected", true);
+                var arrLessonUser = $("#lessonUser").val();
+                //
+                @*$.ajax({
+                    type: "post",
+                    data: { lessonId: "@ViewBag.LessonId", userName: userName },
+                    url:"@Url.Action("GetUserName","CollaborativeLesson")",
+                    success: function (data) {
+                        $("#NoExistUser").empty();
+                        var optionhtml = "";
+                        if (data!=null && data.length>0) {
+                            $.each(data, function (i, item) {
+                                if ($.inArray(item.UserId, arrLessonUser) < 0) {
+                                    optionhtml += ("<option value=\"" + item.UserId + "\">" + item.FullName + "</option>");
+                                }
+                            })
+                            $("#NoExistUser").append(optionhtml);
+                        }
+
+                    }
+            })*@
+            })
+
+   
+
+
+    //移动
+    function move(lstFrom, lstTo) {
+        var selUser = $("#" + lstFrom).val();
+        if (null != selUser && selUser != "") {
+            var selOption = $("#" + lstFrom).find("option:selected");
+            $("#" + lstFrom).find("option:selected").remove();
+            $("#" + lstTo).append(selOption);
+        }
+        else {
+            alert("请选择用户！");
+            return false;
+        }
+    }
+
+
+
+
+    }())
+
+
+  
+
+
+
+</script>
+
+<style>
+    .one-listbox-group {
+        display:table;
+        height:400px;
+    }
+
+    .one-listbox-group select {
+        height:100%;
+        min-width:240px;
+        font-size:1.2em;
+    }
+
+    .one-listbox-group > div {
+        display:table-cell;
+        height:100%;
+    }
+
+    .listbox-btn {
+        vertical-align:middle;
+    }
+
+    .listbox-btn button {
+        width: 48px;
+        margin:4px;
+    }
+
+    .one-listbox-group select option {
+        padding: 2px;
+    }
+
+
+
+
+
+</style>

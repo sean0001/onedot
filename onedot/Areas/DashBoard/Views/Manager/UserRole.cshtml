@@ -1,0 +1,231 @@
+﻿@{
+    ViewBag.Title = "UserRole";
+    Layout = "~/Areas/DashBoard/Views/Shared/_LayoutDash.cshtml";
+}
+
+<script type="text/kendo" id="userRoleSetTemplate">
+    <ul id='ull'>
+        #if(data){#
+        #for(var i = 0; i< data.length; i++){#
+        <li style='float:left;'>
+            #:data[i].Text#
+            #if(i+1 != data.length){#
+            &nbsp;/&nbsp;
+            #}#
+        </li>
+        #}}#
+    </ul>
+</script>
+
+
+@*@{
+    Html.RenderPartial("pp/_RolesEdit");
+}*@ 
+
+
+
+
+@Html.Partial("_CommonWindow",
+    new one.Core.ParamCommonWin() {
+        Title ="编辑角色",
+        Area = "dashboard",
+        Controller = "manager",
+        Action = "RolesEdit" ,
+        Name ="testWindow" ,
+        js = "$(function(){ })" ,
+        WHeight = 500,
+        WWidth = 600
+    })
+
+
+@*<div class="k-toolbar">
+
+
+
+</div>*@
+
+
+
+
+
+    @(Html.Kendo().Grid<one.Service.ViewRolesOfUser>()
+            .Name("GridUserAndRole")
+            .HtmlAttributes(new { @class = "one-grid-resize" })
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.UserId).Title("ID").Hidden();
+
+        columns.Bound(c => c.UserName).Title(@Lang.UserName).Width(160);
+
+        columns.Bound(c => c.Email).Title(@Lang.Email).Width(160);
+
+        columns.Bound(c => c.PhoneNumber).Title(@Lang.PhoneNumber).Width(160);
+        columns.Bound(c => c.Describe).Title(@Lang.Describe).Width(240);
+
+        columns.Bound(c => c.Remark).Title(@Lang.Remark).Width(240);
+
+
+        columns.Bound(c => c.Roles).Title(@Lang.BelongToRoles).Filterable(false)
+            .ClientTemplate("#= userRoleSetTemplate(Roles) #").Sortable(false); ;
+
+        columns.Bound(c => c.CreateTime).Width(140).Title(@Lang.CreateTime)
+            .HtmlAttributes(new { title = @Lang.CreateTime_Title })
+            .Format(Fmt.Fmt_Datetime);
+
+    })
+    .ToolBar(toolbar => {
+        toolbar.Template(
+            @<text>
+    <div class="one-toolbar">
+
+        <button type="button" class="k-button one-grid-edit">
+            <i class="icon-edit"></i>@(one.Res.Lang.Btn_Edit)
+        </button>
+
+        <button type="button" class="k-button one-grid-editRoles">
+            <i class="icon-group"></i>@(one.Res.Lang.Btn_EditRoles)
+        </button>
+
+    </div>
+
+
+            </text>
+        );
+    })
+
+                .Editable(editable => editable
+                    .Mode(GridEditMode.PopUp)
+                    .TemplateName("_EditUserRoles")
+                    .Window(a => a.Title(Lang.SetUserRoles)))
+                .Pageable(p => p.Input(true)
+                    .Numeric(true)
+                    .PageSizes(new[] { 30, 50, 120 })
+                    .Refresh(true).Info(true).
+                    Messages(a =>
+                    {
+                        a.ItemsPerPage(one.Res.Lang.Page_ItemsPerPage);
+                        a.Page(one.Res.Lang.Page_Page);
+                        a.Of(one.Res.Lang.Page_of);
+                        a.Display(one.Res.Lang.Page_Display);
+                    }))
+                    .Navigatable()
+                    .Sortable()
+                    .Selectable()
+                    .Scrollable(scr => scr.Height(580))
+                    .Filterable(a => a.Extra(false)
+                        .Operators(operators => operators
+                            .ForString(str =>
+                                str.Clear()
+                                .Contains(one.Res.Lang.Flt_Contains)
+                                .DoesNotContain(one.Res.Lang.Flt_NotContain)
+                                .IsEqualTo(one.Res.Lang.Flt_IsSqualTo)
+                                .IsNotEqualTo(one.Res.Lang.Flt_IsNotSqualTo)
+                                .EndsWith(one.Res.Lang.Flt_EndsWith)
+                                .StartsWith(one.Res.Lang.Flt_StartsWith)
+                                )
+                            .ForDate(date => date.Clear()
+                                .IsGreaterThan(one.Res.Lang.Flt_Date_gt)
+                                .IsEqualTo(one.Res.Lang.Flt_IsSqualTo)
+                                .IsLessThan(one.Res.Lang.Flt_Date_lt)
+                                )
+                            .ForNumber(num => num.Clear()
+                                .IsEqualTo(one.Res.Lang.Flt_IsSqualTo)
+                                .IsGreaterThan(one.Res.Lang.Flt_gt)
+                                .IsGreaterThanOrEqualTo(one.Res.Lang.Flt_gte)
+                                .IsLessThan(one.Res.Lang.Flt_lt)
+                                .IsLessThanOrEqualTo(one.Res.Lang.Flt_lte)
+                                .IsNotEqualTo(one.Res.Lang.Flt_IsNotSqualTo)
+                                )
+                            .ForEnums(enu => enu.IsEqualTo(one.Res.Lang.Flt_IsSqualTo)
+                                .IsNotEqualTo(one.Res.Lang.Flt_IsNotSqualTo))
+                                )
+                            .Messages(m => m
+                                .Filter(one.Res.Lang.Flt_msg_fliter)
+                                .Clear(one.Res.Lang.Flt_msg_clear)
+                                .SelectValue(one.Res.Lang.Flt_msg_selectValue)
+                                .Info(one.Res.Lang.Flt_msg_info)
+                                .And(one.Res.Lang.Flt_msg_and)
+                                .Or(one.Res.Lang.Flt_msg_or)
+                                .IsFalse(one.Res.Lang.Flt_msg_false)
+                                .IsTrue(one.Res.Lang.Flt_msg_true)
+                                ))
+                     .Events(evt => evt.Edit("gridEdit"))
+                     .DataSource(dataSource => dataSource
+                         .Ajax()
+                         .PageSize(30)
+                         //.AutoSync(true)
+                         .Sort(sort => sort.Add("Id").Descending())
+                         //.Filter(filter => filter.Add(a => a.State).IsEqualTo(4))
+                         .ServerOperation(false)
+                                 .Events(events => events.RequestEnd("kendoRequestBack"))
+                         .Model(model =>
+                         {
+                             model.Id(p => p.UserId);
+                             model.Field(p => p.UserId).Editable(false);
+                         })
+                     //.Group(g => g.Add(ad => ad.CategoryId))
+                     .Read(read => read.Action("read_UserAndRoles", "manager", new { area = "dashboard" }))
+                     .Create(create => create.Action("update_UserAndRoles", "manager", new { area = "dashboard" }))
+                     .Update(update => update.Action("update_UserAndRoles", "manager", new { area = "dashboard" }))
+                     .Destroy(destroy => destroy.Action("read_UserAndRoles", "manager", new { area = "dashboard" }))
+                     )
+    )
+    <script>
+
+        //window.onedot = new one();
+        //onedot.showName();
+
+        var userRoleSetTemplate = kendo.template($("#userRoleSetTemplate").html(), { useWithBlock: true });
+
+        function gridEdit(m) {
+            m.model.HotelId = parseInt($("#current_hotel_id").val());
+        }
+
+
+        function gridEditRow($this) {
+            var grid = $("#GridHotelQuotationDescribe").data("kendoGrid");
+            var row = grid.select();
+            if (row.length < 1) {
+                alert("@(one.Res.Lang.Grid_MustSelectAnyRow)");
+                return;
+            }
+            //var item = grid.dataItem(row)
+            //if (item.AirTicketLock == 1) {
+            //    alert("*注意：\r\n\r\n该订单财务已经入账，无法直接修改！\n\r如果确有必要修改，请联系中心财务！")
+            //    return;
+            //}
+            grid.editRow(row);
+        }
+
+
+
+        function gridDelRow($this) {
+
+
+            var grid = $("#GridHotelQuotationDescribe").data("kendoGrid");
+            var row = grid.select();
+            if (row.length < 1) {
+                alert("@(one.Res.Lang.Grid_MustSelectAnyRow)");
+                return;
+            }
+
+            grid.removeRow(row);
+
+
+        }
+
+
+
+        $(function () {
+
+
+
+
+        })
+
+
+    </script>
+
+
+
+

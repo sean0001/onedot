@@ -1,0 +1,787 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OneDotModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Auth_FuncTree">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="FuncTypeId" Type="int" Nullable="false" />
+          <Property Name="LevelCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="FuncCaption" Type="nvarchar" MaxLength="100" />
+          <Property Name="FuncTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="FuncDescribe" Type="nvarchar" MaxLength="100" />
+          <Property Name="FuncCaptionEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="FuncTitleEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="FuncDescribeEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="Area" Type="nvarchar" MaxLength="100" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="100" />
+          <Property Name="Action" Type="nvarchar" MaxLength="100" />
+          <Property Name="DefaultParam" Type="nvarchar" MaxLength="100" />
+          <Property Name="RequestType" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortNo" Type="int" Nullable="false" />
+          <Property Name="ImgSrc" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Auth_RoleFunc">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="FuncId" />
+          </Key>
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FuncId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Auth_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="1000" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="DescribeEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Auth_UserClaim">
+          <Key>
+            <PropertyRef Name="UserClaimId" />
+          </Key>
+          <Property Name="UserClaimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Auth_UserInfor">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+          <Property Name="Area" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="100" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="LastUpdateTime" Type="datetime" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="QQ" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Auth_UserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Auth_UserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Auth_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pub_Metadata">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="tinyint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pub_MetaIndex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="120" />
+        </EntityType>
+        <Association Name="FK_dbo_Auth_FuncTree_dbo_Auth_FuncTree_ParentId">
+          <End Role="Auth_FuncTree" Type="Self.Auth_FuncTree" Multiplicity="0..1" />
+          <End Role="Auth_FuncTree1" Type="Self.Auth_FuncTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_FuncTree">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_FuncTree1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_FuncTypeId">
+          <End Role="Pub_Metadata" Type="Self.Pub_Metadata" Multiplicity="1" />
+          <End Role="Auth_FuncTree" Type="Self.Auth_FuncTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pub_Metadata">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_FuncTree">
+              <PropertyRef Name="FuncTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_ModuleId">
+          <End Role="Pub_Metadata" Type="Self.Pub_Metadata" Multiplicity="1" />
+          <End Role="Auth_FuncTree" Type="Self.Auth_FuncTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pub_Metadata">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_FuncTree">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_RoleFunc_dbo_Auth_FuncTree_FuncId">
+          <End Role="Auth_FuncTree" Type="Self.Auth_FuncTree" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_RoleFunc" Type="Self.Auth_RoleFunc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_FuncTree">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_RoleFunc">
+              <PropertyRef Name="FuncId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_RoleFunc_dbo_Auth_Roles_RoleId">
+          <End Role="Auth_Roles" Type="Self.Auth_Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_RoleFunc" Type="Self.Auth_RoleFunc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Auth_RoleFunc">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_UserClaim_dbo_Auth_Users_UserId">
+          <End Role="Auth_Users" Type="Self.Auth_Users" Multiplicity="0..1" />
+          <End Role="Auth_UserClaim" Type="Self.Auth_UserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Auth_UserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_UserInfor_dbo_Auth_Users_UserId">
+          <End Role="Auth_Users" Type="Self.Auth_Users" Multiplicity="1" />
+          <End Role="Auth_UserInfor" Type="Self.Auth_UserInfor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Auth_UserInfor">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_UserLogin_dbo_Auth_Users_UserId">
+          <End Role="Auth_Users" Type="Self.Auth_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_UserLogin" Type="Self.Auth_UserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Auth_UserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_UserRole_dbo_Auth_Roles_RoleId">
+          <End Role="Auth_Roles" Type="Self.Auth_Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_UserRole" Type="Self.Auth_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Auth_UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_UserRole_dbo_Auth_Users_UserId">
+          <End Role="Auth_Users" Type="Self.Auth_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_UserRole" Type="Self.Auth_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Auth_UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Pub_Metadata_dbo_Pub_MetaIndex_CategoryId">
+          <End Role="Pub_MetaIndex" Type="Self.Pub_MetaIndex" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pub_Metadata" Type="Self.Pub_Metadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pub_MetaIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pub_Metadata">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OneDotModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_FuncTree" EntityType="Self.Auth_FuncTree" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_RoleFunc" EntityType="Self.Auth_RoleFunc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_Roles" EntityType="Self.Auth_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_UserClaim" EntityType="Self.Auth_UserClaim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_UserInfor" EntityType="Self.Auth_UserInfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_UserLogin" EntityType="Self.Auth_UserLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_UserRole" EntityType="Self.Auth_UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_Users" EntityType="Self.Auth_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pub_Metadata" EntityType="Self.Pub_Metadata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pub_MetaIndex" EntityType="Self.Pub_MetaIndex" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Auth_FuncTree_dbo_Auth_FuncTree_ParentId" Association="Self.FK_dbo_Auth_FuncTree_dbo_Auth_FuncTree_ParentId">
+            <End Role="Auth_FuncTree" EntitySet="Auth_FuncTree" />
+            <End Role="Auth_FuncTree1" EntitySet="Auth_FuncTree" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_FuncTypeId" Association="Self.FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_FuncTypeId">
+            <End Role="Pub_Metadata" EntitySet="Pub_Metadata" />
+            <End Role="Auth_FuncTree" EntitySet="Auth_FuncTree" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_ModuleId" Association="Self.FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_ModuleId">
+            <End Role="Pub_Metadata" EntitySet="Pub_Metadata" />
+            <End Role="Auth_FuncTree" EntitySet="Auth_FuncTree" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_RoleFunc_dbo_Auth_FuncTree_FuncId" Association="Self.FK_dbo_Auth_RoleFunc_dbo_Auth_FuncTree_FuncId">
+            <End Role="Auth_FuncTree" EntitySet="Auth_FuncTree" />
+            <End Role="Auth_RoleFunc" EntitySet="Auth_RoleFunc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_RoleFunc_dbo_Auth_Roles_RoleId" Association="Self.FK_dbo_Auth_RoleFunc_dbo_Auth_Roles_RoleId">
+            <End Role="Auth_Roles" EntitySet="Auth_Roles" />
+            <End Role="Auth_RoleFunc" EntitySet="Auth_RoleFunc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_UserClaim_dbo_Auth_Users_UserId" Association="Self.FK_dbo_Auth_UserClaim_dbo_Auth_Users_UserId">
+            <End Role="Auth_Users" EntitySet="Auth_Users" />
+            <End Role="Auth_UserClaim" EntitySet="Auth_UserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_UserInfor_dbo_Auth_Users_UserId" Association="Self.FK_dbo_Auth_UserInfor_dbo_Auth_Users_UserId">
+            <End Role="Auth_Users" EntitySet="Auth_Users" />
+            <End Role="Auth_UserInfor" EntitySet="Auth_UserInfor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_UserLogin_dbo_Auth_Users_UserId" Association="Self.FK_dbo_Auth_UserLogin_dbo_Auth_Users_UserId">
+            <End Role="Auth_Users" EntitySet="Auth_Users" />
+            <End Role="Auth_UserLogin" EntitySet="Auth_UserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_UserRole_dbo_Auth_Roles_RoleId" Association="Self.FK_dbo_Auth_UserRole_dbo_Auth_Roles_RoleId">
+            <End Role="Auth_Roles" EntitySet="Auth_Roles" />
+            <End Role="Auth_UserRole" EntitySet="Auth_UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_UserRole_dbo_Auth_Users_UserId" Association="Self.FK_dbo_Auth_UserRole_dbo_Auth_Users_UserId">
+            <End Role="Auth_Users" EntitySet="Auth_Users" />
+            <End Role="Auth_UserRole" EntitySet="Auth_UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Pub_Metadata_dbo_Pub_MetaIndex_CategoryId" Association="Self.FK_dbo_Pub_Metadata_dbo_Pub_MetaIndex_CategoryId">
+            <End Role="Pub_MetaIndex" EntitySet="Pub_MetaIndex" />
+            <End Role="Pub_Metadata" EntitySet="Pub_Metadata" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OneDotModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Auth_FuncTree">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="FuncTypeId" Type="Int32" Nullable="false" />
+          <Property Name="LevelCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FuncCaption" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FuncTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FuncDescribe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FuncCaptionEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FuncTitleEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FuncDescribeEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultParam" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RequestType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SortNo" Type="Int32" Nullable="false" />
+          <Property Name="ImgSrc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Auth_FuncTree1" Relationship="Self.FK_dbo_Auth_FuncTree_dbo_Auth_FuncTree_ParentId" FromRole="Auth_FuncTree" ToRole="Auth_FuncTree1" />
+          <NavigationProperty Name="Auth_FuncTree2" Relationship="Self.FK_dbo_Auth_FuncTree_dbo_Auth_FuncTree_ParentId" FromRole="Auth_FuncTree1" ToRole="Auth_FuncTree" />
+          <NavigationProperty Name="Pub_Metadata" Relationship="Self.FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_FuncTypeId" FromRole="Auth_FuncTree" ToRole="Pub_Metadata" />
+          <NavigationProperty Name="Pub_Metadata1" Relationship="Self.FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_ModuleId" FromRole="Auth_FuncTree" ToRole="Pub_Metadata" />
+          <NavigationProperty Name="Auth_Roles" Relationship="Self.Auth_RoleFunc" FromRole="Auth_FuncTree" ToRole="Auth_Roles" />
+        </EntityType>
+        <EntityType Name="Auth_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Describe" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="NameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DescribeEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auth_FuncTree" Relationship="Self.Auth_RoleFunc" FromRole="Auth_Roles" ToRole="Auth_FuncTree" />
+          <NavigationProperty Name="Auth_Users" Relationship="Self.Auth_UserRole" FromRole="Auth_Roles" ToRole="Auth_Users" />
+        </EntityType>
+        <EntityType Name="Auth_UserClaim">
+          <Key>
+            <PropertyRef Name="UserClaimId" />
+          </Key>
+          <Property Name="UserClaimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auth_Users" Relationship="Self.FK_dbo_Auth_UserClaim_dbo_Auth_Users_UserId" FromRole="Auth_UserClaim" ToRole="Auth_Users" />
+        </EntityType>
+        <EntityType Name="Auth_UserInfor">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QQ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auth_Users" Relationship="Self.FK_dbo_Auth_UserInfor_dbo_Auth_Users_UserId" FromRole="Auth_UserInfor" ToRole="Auth_Users" />
+        </EntityType>
+        <EntityType Name="Auth_UserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auth_Users" Relationship="Self.FK_dbo_Auth_UserLogin_dbo_Auth_Users_UserId" FromRole="Auth_UserLogin" ToRole="Auth_Users" />
+        </EntityType>
+        <EntityType Name="Auth_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auth_UserClaim" Relationship="Self.FK_dbo_Auth_UserClaim_dbo_Auth_Users_UserId" FromRole="Auth_Users" ToRole="Auth_UserClaim" />
+          <NavigationProperty Name="Auth_UserInfor" Relationship="Self.FK_dbo_Auth_UserInfor_dbo_Auth_Users_UserId" FromRole="Auth_Users" ToRole="Auth_UserInfor" />
+          <NavigationProperty Name="Auth_UserLogin" Relationship="Self.FK_dbo_Auth_UserLogin_dbo_Auth_Users_UserId" FromRole="Auth_Users" ToRole="Auth_UserLogin" />
+          <NavigationProperty Name="Auth_Roles" Relationship="Self.Auth_UserRole" FromRole="Auth_Users" ToRole="Auth_Roles" />
+        </EntityType>
+        <EntityType Name="Pub_Metadata">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Byte" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Auth_FuncTree" Relationship="Self.FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_FuncTypeId" FromRole="Pub_Metadata" ToRole="Auth_FuncTree" />
+          <NavigationProperty Name="Auth_FuncTree1" Relationship="Self.FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_ModuleId" FromRole="Pub_Metadata" ToRole="Auth_FuncTree" />
+          <NavigationProperty Name="Pub_MetaIndex" Relationship="Self.FK_dbo_Pub_Metadata_dbo_Pub_MetaIndex_CategoryId" FromRole="Pub_Metadata" ToRole="Pub_MetaIndex" />
+        </EntityType>
+        <EntityType Name="Pub_MetaIndex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pub_Metadata" Relationship="Self.FK_dbo_Pub_Metadata_dbo_Pub_MetaIndex_CategoryId" FromRole="Pub_MetaIndex" ToRole="Pub_Metadata" />
+        </EntityType>
+        <Association Name="FK_dbo_Auth_FuncTree_dbo_Auth_FuncTree_ParentId">
+          <End Role="Auth_FuncTree" Type="Self.Auth_FuncTree" Multiplicity="0..1" />
+          <End Role="Auth_FuncTree1" Type="Self.Auth_FuncTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_FuncTree">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_FuncTree1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_FuncTypeId">
+          <End Role="Pub_Metadata" Type="Self.Pub_Metadata" Multiplicity="1" />
+          <End Role="Auth_FuncTree" Type="Self.Auth_FuncTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pub_Metadata">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_FuncTree">
+              <PropertyRef Name="FuncTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_ModuleId">
+          <End Role="Pub_Metadata" Type="Self.Pub_Metadata" Multiplicity="1" />
+          <End Role="Auth_FuncTree" Type="Self.Auth_FuncTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pub_Metadata">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_FuncTree">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_UserClaim_dbo_Auth_Users_UserId">
+          <End Role="Auth_Users" Type="Self.Auth_Users" Multiplicity="0..1" />
+          <End Role="Auth_UserClaim" Type="Self.Auth_UserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Auth_UserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_UserInfor_dbo_Auth_Users_UserId">
+          <End Role="Auth_Users" Type="Self.Auth_Users" Multiplicity="1" />
+          <End Role="Auth_UserInfor" Type="Self.Auth_UserInfor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Auth_UserInfor">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_UserLogin_dbo_Auth_Users_UserId">
+          <End Role="Auth_Users" Type="Self.Auth_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_UserLogin" Type="Self.Auth_UserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Auth_UserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Pub_Metadata_dbo_Pub_MetaIndex_CategoryId">
+          <End Role="Pub_MetaIndex" Type="Self.Pub_MetaIndex" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pub_Metadata" Type="Self.Pub_Metadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pub_MetaIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pub_Metadata">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Auth_RoleFunc">
+          <End Role="Auth_FuncTree" Type="Self.Auth_FuncTree" Multiplicity="*" />
+          <End Role="Auth_Roles" Type="Self.Auth_Roles" Multiplicity="*" />
+        </Association>
+        <Association Name="Auth_UserRole">
+          <End Role="Auth_Roles" Type="Self.Auth_Roles" Multiplicity="*" />
+          <End Role="Auth_Users" Type="Self.Auth_Users" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Auth_FuncTree" EntityType="Self.Auth_FuncTree" />
+          <EntitySet Name="Auth_Roles" EntityType="Self.Auth_Roles" />
+          <EntitySet Name="Auth_UserClaim" EntityType="Self.Auth_UserClaim" />
+          <EntitySet Name="Auth_UserInfor" EntityType="Self.Auth_UserInfor" />
+          <EntitySet Name="Auth_UserLogin" EntityType="Self.Auth_UserLogin" />
+          <EntitySet Name="Auth_Users" EntityType="Self.Auth_Users" />
+          <EntitySet Name="Pub_Metadata" EntityType="Self.Pub_Metadata" />
+          <EntitySet Name="Pub_MetaIndex" EntityType="Self.Pub_MetaIndex" />
+          <AssociationSet Name="FK_dbo_Auth_FuncTree_dbo_Auth_FuncTree_ParentId" Association="Self.FK_dbo_Auth_FuncTree_dbo_Auth_FuncTree_ParentId">
+            <End Role="Auth_FuncTree" EntitySet="Auth_FuncTree" />
+            <End Role="Auth_FuncTree1" EntitySet="Auth_FuncTree" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_FuncTypeId" Association="Self.FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_FuncTypeId">
+            <End Role="Pub_Metadata" EntitySet="Pub_Metadata" />
+            <End Role="Auth_FuncTree" EntitySet="Auth_FuncTree" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_ModuleId" Association="Self.FK_dbo_Auth_FuncTree_dbo_Pub_Metadata_ModuleId">
+            <End Role="Pub_Metadata" EntitySet="Pub_Metadata" />
+            <End Role="Auth_FuncTree" EntitySet="Auth_FuncTree" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_UserClaim_dbo_Auth_Users_UserId" Association="Self.FK_dbo_Auth_UserClaim_dbo_Auth_Users_UserId">
+            <End Role="Auth_Users" EntitySet="Auth_Users" />
+            <End Role="Auth_UserClaim" EntitySet="Auth_UserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_UserInfor_dbo_Auth_Users_UserId" Association="Self.FK_dbo_Auth_UserInfor_dbo_Auth_Users_UserId">
+            <End Role="Auth_Users" EntitySet="Auth_Users" />
+            <End Role="Auth_UserInfor" EntitySet="Auth_UserInfor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_UserLogin_dbo_Auth_Users_UserId" Association="Self.FK_dbo_Auth_UserLogin_dbo_Auth_Users_UserId">
+            <End Role="Auth_Users" EntitySet="Auth_Users" />
+            <End Role="Auth_UserLogin" EntitySet="Auth_UserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Pub_Metadata_dbo_Pub_MetaIndex_CategoryId" Association="Self.FK_dbo_Pub_Metadata_dbo_Pub_MetaIndex_CategoryId">
+            <End Role="Pub_MetaIndex" EntitySet="Pub_MetaIndex" />
+            <End Role="Pub_Metadata" EntitySet="Pub_Metadata" />
+          </AssociationSet>
+          <AssociationSet Name="Auth_RoleFunc" Association="Self.Auth_RoleFunc">
+            <End Role="Auth_FuncTree" EntitySet="Auth_FuncTree" />
+            <End Role="Auth_Roles" EntitySet="Auth_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="Auth_UserRole" Association="Self.Auth_UserRole">
+            <End Role="Auth_Roles" EntitySet="Auth_Roles" />
+            <End Role="Auth_Users" EntitySet="Auth_Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OneDotModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="OneDotModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_FuncTree">
+            <EntityTypeMapping TypeName="OneDotModel.Auth_FuncTree">
+              <MappingFragment StoreEntitySet="Auth_FuncTree">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="FuncTypeId" ColumnName="FuncTypeId" />
+                <ScalarProperty Name="LevelCode" ColumnName="LevelCode" />
+                <ScalarProperty Name="FuncCaption" ColumnName="FuncCaption" />
+                <ScalarProperty Name="FuncTitle" ColumnName="FuncTitle" />
+                <ScalarProperty Name="FuncDescribe" ColumnName="FuncDescribe" />
+                <ScalarProperty Name="FuncCaptionEn" ColumnName="FuncCaptionEn" />
+                <ScalarProperty Name="FuncTitleEn" ColumnName="FuncTitleEn" />
+                <ScalarProperty Name="FuncDescribeEn" ColumnName="FuncDescribeEn" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="DefaultParam" ColumnName="DefaultParam" />
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="SortNo" ColumnName="SortNo" />
+                <ScalarProperty Name="ImgSrc" ColumnName="ImgSrc" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_Roles">
+            <EntityTypeMapping TypeName="OneDotModel.Auth_Roles">
+              <MappingFragment StoreEntitySet="Auth_Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="DescribeEn" ColumnName="DescribeEn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_UserClaim">
+            <EntityTypeMapping TypeName="OneDotModel.Auth_UserClaim">
+              <MappingFragment StoreEntitySet="Auth_UserClaim">
+                <ScalarProperty Name="UserClaimId" ColumnName="UserClaimId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_UserInfor">
+            <EntityTypeMapping TypeName="OneDotModel.Auth_UserInfor">
+              <MappingFragment StoreEntitySet="Auth_UserInfor">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_UserLogin">
+            <EntityTypeMapping TypeName="OneDotModel.Auth_UserLogin">
+              <MappingFragment StoreEntitySet="Auth_UserLogin">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_Users">
+            <EntityTypeMapping TypeName="OneDotModel.Auth_Users">
+              <MappingFragment StoreEntitySet="Auth_Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pub_Metadata">
+            <EntityTypeMapping TypeName="OneDotModel.Pub_Metadata">
+              <MappingFragment StoreEntitySet="Pub_Metadata">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pub_MetaIndex">
+            <EntityTypeMapping TypeName="OneDotModel.Pub_MetaIndex">
+              <MappingFragment StoreEntitySet="Pub_MetaIndex">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Auth_RoleFunc" TypeName="OneDotModel.Auth_RoleFunc" StoreEntitySet="Auth_RoleFunc">
+            <EndProperty Name="Auth_FuncTree">
+              <ScalarProperty Name="Id" ColumnName="FuncId" />
+            </EndProperty>
+            <EndProperty Name="Auth_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Auth_UserRole" TypeName="OneDotModel.Auth_UserRole" StoreEntitySet="Auth_UserRole">
+            <EndProperty Name="Auth_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="Auth_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

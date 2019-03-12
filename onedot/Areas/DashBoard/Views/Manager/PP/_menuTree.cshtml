@@ -1,0 +1,51 @@
+﻿@using Kendo.Mvc.UI.Fluent
+@model IEnumerable<one.Service.MenuTree> 
+
+@(Html.Kendo().TreeView().Name("TreeViewMenu")
+             .ExpandAll(true)
+             .BindTo(Model, (NavigationBindingFactory<TreeViewItem> mappings) =>
+             {
+                 mappings.For<one.Service.MenuTree>(binding =>
+                     binding.ItemDataBound((item, dapartment) =>
+                     {
+                         item.Text = dapartment.FuncTitle;
+                         item.Expanded = false;
+                         //item.Checked = dapartment.Checked;
+                         item.Id = dapartment.Id.ToString();
+                         item.Checked = dapartment.State == 100;
+                         item.LinkHtmlAttributes.Add("cusname", dapartment.FuncCaption);
+                         item.LinkHtmlAttributes.Add("value", dapartment.Id);
+                         item.LinkHtmlAttributes.Add("parentid", dapartment.ParentId);
+                         item.LinkHtmlAttributes.Add("href", "javascript:void(0)");
+                         item.LinkHtmlAttributes.Add("title", dapartment.FuncDescribe);
+                         //  item.Checked = dapartment.Checked;
+                         //item.ActionName = "Content";
+                         //item.ControllerName = "Home";
+                         //item.LinkHtmlAttributes.Add("data-ajax", "true");
+                         //item.LinkHtmlAttributes.Add("data-ajax-mode", "replace");
+                         //item.LinkHtmlAttributes.Add("data-ajax-update", "#container");
+                         //.Contains(item.Id)
+                     })
+                     .Children(department => department.TreeNode));
+             })
+              .LoadOnDemand(false)
+               //.ItemAction(item => { item.Checked =    })
+             .Checkboxes(checkboxes => checkboxes
+                            .Name("checkedRole")
+                            .CheckChildren(true)
+                        )
+              .HtmlAttributes(new { style = "max-height:520px; overflow:auto; width:400px;" })
+)
+
+
+<script>
+
+    $("#TreeViewMenu").delegate('span.k-in', 'click',
+        function (e) {
+            $(e.target).prev("span").children("input").trigger("click");
+        });
+
+
+
+
+</script>

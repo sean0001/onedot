@@ -1,0 +1,28 @@
+﻿@using one.Service;
+@model IEnumerable<OSelectListItem>
+
+@{
+    var BindedData = (IEnumerable<OSelectListItem>)ViewBag.Roles;
+}
+
+
+<script type="text/kendo" id="RolesTemplate">
+    <div>
+        <h3>#:Text#</h3>
+        <p>#:Value#</p>
+    </div>
+</script>
+
+@(Html.Kendo().ListView<OSelectListItem>()
+    .Name("Roles")
+    .TagName("select")
+    .ClientTemplateId("RolesTemplate")
+)
+
+@*@(
+ Html.Kendo().MultiSelectFor(m => m)
+    .DataTextField("Text")
+    .DataValueField("Value")
+    .BindTo(BindedData)
+    
+)*@

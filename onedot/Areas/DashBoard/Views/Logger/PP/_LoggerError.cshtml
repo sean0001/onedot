@@ -1,0 +1,143 @@
+﻿<script>
+
+    var expandedRow;
+    function detailExpandError(e) {
+        // Only one open at a time
+        if (expandedRow != null && expandedRow[0] != e.masterRow[0]) {
+            var grid = $('#LoggerInfoGrid').data('kendoGrid');
+            grid.collapseRow(expandedRow);
+        }
+        expandedRow = e.masterRow;
+    }
+
+</script>
+
+
+
+
+@(Html.Kendo().Grid<one.Service.LoggerFileInfo>()
+    .Name("LoggerErrorGrid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.RowNo).Title("行号").Width(80);
+        columns.Bound(p => p.Name).Title("文件名称");
+        columns.Bound(p => p.CreateTime).Title("创建时间").Width(200).Format("{0:yyyy-MM-dd HH:mm}");
+        columns.Bound(p => p.LastAccessTime).Title("最后访问时间").Width(200).Format("{0:yyyy-MM-dd HH:mm}");
+        columns.Bound(p => p.LastWriteTime).Title("最后写入时间").Width(200).Format("{0:yyyy-MM-dd HH:mm}");
+        columns.Bound(p => p.FileSize).Title("文件大小").Width(200).ClientTemplate("#: kendo.toString(FileSize/1000, '\\#\\#,\\#.00')#KB");
+
+        //columns.Bound(p => p.Name).Title("操作").Width(60).Filterable(false)
+        //    .ClientTemplate(@" <a  href='\\#' class='k-button k-button-icontext one-gridrow-delete'
+        //                                    title='删除当前行'
+        //                                    style='width:26px;min-width:0px;'>
+        //                                    <span class='k-icon k-i-close'></span>
+        //                                </a>");
+
+
+
+    })
+      .ToolBar(toolbar => toolbar.Template(@<text>
+
+        <button type="button" class="k-button delete-logger-all" data-item="3">
+            <i class="icon-remove"></i>
+            @Lang.ClearLogger
+        </button>
+
+
+    </text>))
+    .ClientDetailTemplateId("templateError")
+    .Events(e => e.DetailExpand("detailExpandError"))
+    .Pageable()
+
+    .Sortable()
+    .Selectable()
+    .Pageable(p => p.Input(true)
+                .Numeric(true)
+                .PageSizes(new[] { 20, 50, 120 })
+                .Refresh(true)
+                .Info(true)
+                .Messages(a =>
+                {
+                    a.ItemsPerPage("行/页");
+                    a.Page("第");
+                    a.Of("页,共{0}页");
+                    a.Display("第{0}-{1}行,共{2}行");
+                }))
+    .Scrollable(scr => scr.Height(0))
+                .Filterable(a => a.Extra(false)
+            .Operators(operators => operators
+            .ForString(str => str.Clear()
+                    .Contains(Lang.Flt_Contains)
+                    .DoesNotContain(Lang.Flt_NotContain)
+                    .IsEqualTo(Lang.Flt_IsSqualTo)
+                    .IsNotEqualTo(Lang.Flt_IsNotSqualTo)
+                    .EndsWith(Lang.Flt_EndsWith)
+                    .StartsWith(Lang.Flt_StartsWith)
+                     )
+            .ForDate(date => date.Clear()
+                    .IsGreaterThan(Lang.Flt_Date_gt)
+                    .IsEqualTo(Lang.Flt_IsSqualTo)
+                    .IsLessThan(Lang.Flt_Date_lt)
+                   )
+            .ForNumber(num => num.Clear()
+                    .IsEqualTo(Lang.Flt_IsSqualTo)
+                    .IsGreaterThan(Lang.Flt_gt)
+                    .IsGreaterThanOrEqualTo(Lang.Flt_gte)
+                    .IsLessThan(Lang.Flt_lt)
+                    .IsLessThanOrEqualTo(Lang.Flt_lte)
+                    .IsNotEqualTo(Lang.Flt_IsNotSqualTo)
+                    )
+            .ForEnums(enu => enu.IsEqualTo(Lang.Flt_IsSqualTo)
+                    .IsNotEqualTo(Lang.Flt_IsNotSqualTo))
+                   )
+                   .Messages(m => m
+                       .Filter(Lang.Flt_msg_fliter)
+                       .Clear(Lang.Flt_msg_clear)
+                       .SelectValue(Lang.Flt_msg_selectValue)
+                       .Info(Lang.Flt_msg_info)
+                       .And(Lang.Flt_msg_and)
+                       .Or(Lang.Flt_msg_or)
+                       .IsFalse(Lang.Flt_msg_false)
+                       .IsTrue(Lang.Flt_msg_true)
+                   )
+            )
+            .Events(evt => evt.DataBound("resizeGrid('LoggerErrorGrid',38)"))
+            .Editable(a => a.DisplayDeleteConfirmation("确定删除当前记录？"))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .AutoSync(false)
+         .Model(model => model.Id(p => p.Name))
+         .Sort(sort => sort.Add("Name").Descending())
+         .Events(evt => evt.RequestEnd("kendoRequestBack"))
+        .PageSize(20)
+        .Read(read => read.Action("read_LoggerFiles", "Logger", new { Area = "dashBoard", Status = 3 }))
+        .Destroy(destroy => destroy.Action("destroySingleCache", "CacheMana", new { Area = "dashBoard" }))
+     )
+)
+
+
+
+
+
+
+<script id="templateError" type="text/kendo-tmpl">
+
+    @(Html.Kendo().TabStrip()
+.Name("LoggerError#=RowNo#")
+.Animation(false)
+.SelectedIndex(0)
+.Items(o =>
+{
+    o.Add().Text("日志明细").LoadContentFrom("LoggerContent", "Logger",
+        new { area = "dashBoard", Name = "#=Name#", status = 3 });
+})
+.ToClientTemplate()
+    )
+
+</script>
+
+
+
+
+
+

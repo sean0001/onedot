@@ -1,0 +1,102 @@
+﻿
+    @(Html.Kendo().Grid<one.Infras.DataCache.SecondCacheItemProperty>()
+    .Name("SecondCacheGrid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Url).Title("缓存特征码");
+        //columns.Bound(p => p.UsageBucket).Title("Usage Bucket").Width(150);
+        columns.Bound(p => p.UtcLastUsageUpdate).Title("最后使用时间").Width(130).Format("{0:yyyy-MM-dd HH:mm}");
+        columns.Bound(p => p.UtcCreated).Title("创建时间").Width(130).Format("{0:yyyy-MM-dd HH:mm}");
+        columns.Bound(p => p.utcExpires).Title("到期时间").Width(130).Format("{0:yyyy-MM-dd HH:mm}");
+        columns.Bound(p => p.TimeSpan).Title("缓存时长").Width(160);
+
+        columns.Bound(p => p.Url).Title("操作").Width(60).Filterable(false)
+            .ClientTemplate(@"<a  href='\\#' class='k-button k-button-icontext one-gridrow-delete'
+                                            title='删除当前行' 
+                                            style='width:26px;min-width:0px;'>
+                                            <span class='k-icon k-i-close'></span>
+                                        </a>");
+
+    })
+      .ToolBar(toolbar => toolbar.Template(@<text>
+
+            <button type="button" class="k-button destroy-cache" data-item="3">
+                <i class="icon-remove"></i>
+                @(Lang.Clear)@Lang.SecondDataCache
+            </button>
+    
+
+
+    </text>))
+    .Pageable()
+    .Sortable()
+    .Selectable()
+    .Pageable(p => p.Input(true)
+                .Numeric(true)
+                .PageSizes(new[] { 20, 50, 120 })
+                .Refresh(true)
+                .Info(true)
+                .Messages(a =>
+                {
+                    a.ItemsPerPage("行/页");
+                    a.Page("第");
+                    a.Of("页,共{0}页");
+                    a.Display("第{0}-{1}行,共{2}行");
+                }))
+    .Scrollable(scr => scr.Height(1))
+                .Filterable(a => a.Extra(false)
+            .Operators(operators => operators
+            .ForString(str => str.Clear()
+                    .Contains(Lang.Flt_Contains)
+                    .DoesNotContain(Lang.Flt_NotContain)
+                    .IsEqualTo(Lang.Flt_IsSqualTo)
+                    .IsNotEqualTo(Lang.Flt_IsNotSqualTo)
+                    .EndsWith(Lang.Flt_EndsWith)
+                    .StartsWith(Lang.Flt_StartsWith)
+                     )
+            .ForDate(date => date.Clear()
+                    .IsGreaterThan(Lang.Flt_Date_gt)
+                    .IsEqualTo(Lang.Flt_IsSqualTo)
+                    .IsLessThan(Lang.Flt_Date_lt)
+                   )
+            .ForNumber(num => num.Clear()
+                    .IsEqualTo(Lang.Flt_IsSqualTo)
+                    .IsGreaterThan(Lang.Flt_gt)
+                    .IsGreaterThanOrEqualTo(Lang.Flt_gte)
+                    .IsLessThan(Lang.Flt_lt)
+                    .IsLessThanOrEqualTo(Lang.Flt_lte)
+                    .IsNotEqualTo(Lang.Flt_IsNotSqualTo)
+                    )
+            .ForEnums(enu => enu.IsEqualTo(Lang.Flt_IsSqualTo)
+                    .IsNotEqualTo(Lang.Flt_IsNotSqualTo))
+                   )
+                   .Messages(m => m
+                       .Filter(Lang.Flt_msg_fliter)
+                       .Clear(Lang.Flt_msg_clear)
+                       .SelectValue(Lang.Flt_msg_selectValue)
+                       .Info(Lang.Flt_msg_info)
+                       .And(Lang.Flt_msg_and)
+                       .Or(Lang.Flt_msg_or)
+                       .IsFalse(Lang.Flt_msg_false)
+                       .IsTrue(Lang.Flt_msg_true)
+                   )
+            )
+            .Events(evt=>evt.DataBound("resizeGrid('SecondCacheGrid',38)"))
+            .Editable(a => a.DisplayDeleteConfirmation("确定删除当前记录？"))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .AutoSync(false)
+         .Model(model => model.Id(p => p.Url))
+         .Sort(sort => sort.Add("UtcCreated").Descending())
+         .Events(evt => evt.RequestEnd("kendoRequestBack"))
+        .PageSize(20)
+        .Read(read => read.Action("read_cache", "CacheMana", new { Area = "dashBoard", cacheCategory = 3 }))
+        .Destroy(destroy => destroy.Action("destroySingleCache", "CacheMana", new { Area = "dashBoard" }))
+     )
+    )
+
+
+
+
+
+
