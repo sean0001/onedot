@@ -18,12 +18,11 @@ namespace onedot.Controllers
 
         public JsonResult textajax() {
 
-
-            throw new Exception("Error Occured !");
-
-
+            //throw new Exception("Error Occured !");
             return Json("显示错误信息");
         }
+
+
 
 
         [AllowAnonymous]

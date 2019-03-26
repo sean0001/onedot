@@ -16,7 +16,5 @@ namespace one.Service
         public static List<OSelectListItem> RequestType { get; set; }
         public static List<OSelectListItem> SysModule { get; set; }
 
-
-
     }
 }
