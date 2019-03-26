@@ -1,77 +1,70 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <!-- Site made with OneDot.Red Website Builder v4.2.4, http://www.onedot.red:8008 -->
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="generator" content="Mobirise v4.2.4, onedot.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="assets/images/logo2.png" type="image/x-icon">
-    <meta name="description" content="">
-    <title>Home</title>
 
+    <title>INSPINIA | @ViewBag.Title</title>
 
-    <link rel="stylesheet" href="~/Scripts/assets/web/assets/mobirise-icons/mobirise-icons.css">
-    <link rel="stylesheet" href="~/Scripts/assets/tether/tether.min.css">
-    <link rel="stylesheet" href="~/Scripts/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Scripts/assets/bootstrap/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="~/Scripts/assets/bootstrap/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="~/Scripts/assets/dropdown/css/style.css">
-    <link rel="stylesheet" href="~/Scripts/assets/socicon/css/styles.css">
-    <link rel="stylesheet" href="~/Scripts/assets/animate.css/animate.min.css">
-    <link rel="stylesheet" href="~/Scripts/assets/theme/css/style.css">
-    <link rel="stylesheet" href="~/Scripts/assets/mobirise/css/mbr-additional.css" type="text/css">
-    
-    @*<script src="@Url.Content("~/Scripts/semantic/semantic.min.css")"></script>*@
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!-- Add local styles, mostly for plugins css file -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
 
+    <!-- Add jQuery Style direct - used for jQGrid plugin -->
+    <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
 
-    @RenderSection("Styles", required: false)
+    <!-- Primary Inspinia style -->
+    @Styles.Render("~/font-awesome/css")
+    @Styles.Render("~/Content/css")
+
 </head>
-
-
 <body>
 
-    @{Html.RenderPartial("_HeaderMenu");}
+    <!-- Skin configuration box -->
+    <!-- @Html.Partial("_SkinConfig") -->
 
-    @RenderBody()
+    <!-- Wrapper-->
+    <!-- PageClass give you ability to specify custom style for specific view based on action -->
+    <div id="wrapper" class="@Html.PageClass()">
+        
 
+        <!-- Navigation -->
+        @Html.Partial("_Navigation")
 
-    <script src="@Url.Content("~/Scripts/assets/web/assets/jquery/jquery.min.js")"></script>
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
 
-    @*<script src="@Url.Content("~/Scripts/semantic/semantic.min.js")"></script>*@
-    
+            <!-- Top Navbar -->
+            @Html.Partial("_TopNavbar")
 
-    <script src="@Url.Content("~/Scripts/assets/web/assets/jquery/jquery.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/popper/popper.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/tether/tether.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/bootstrap/js/bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/smooth-scroll/smooth-scroll.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/dropdown/js/script.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/touch-swipe/jquery.touch-swipe.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/viewport-checker/jquery.viewportchecker.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/jquery-mb-ytplayer/jquery.mb.ytplayer.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/jquery-mb-vimeo_player/jquery.mb.vimeo_player.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/jarallax/jarallax.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/theme/js/script.js")"></script>
-    <script src="@Url.Content("~/Scripts/assets/mobirise-slider-video/script.js")"></script>
+            <!-- Main view  -->
+            @RenderBody()
 
+            <!-- Footer -->
+            @Html.Partial("_Footer")
 
+        </div>
+        <!-- End page wrapper-->
 
+        <!-- Right Sidebar -->
+        @Html.Partial("_RightSidebar")
 
-<div id="scrollToTop" class="scrollToTop mbr-arrow-up">
-    <a style="text-align: center;">
-       <i class="mbri-down mbr-iconfont">
-       </i>
-    </a>
-</div>
+    </div>
+    <!-- End wrapper-->
 
+    <!-- Section for main scripts render -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/bundles/inspinia")
 
+    <!-- Skin config script - only for demo purpose-->
+    @Scripts.Render("~/bundles/skinConfig")
 
-    <input name="animation" type="hidden">
+    <!-- Handler for local scripts -->
     @RenderSection("scripts", required: false)
-
-
 </body>
 </html>
-

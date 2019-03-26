@@ -37,12 +37,15 @@ namespace System.Web.Mvc
 
                     if (state.Key == "Success")
                     {
-                        sb.AppendFormat("<li class='Success'> <i class='icon-ok'></i><span>{0}</span></li>", mess.ErrorMessage);
+                        
+                       sb.AppendFormat("<li class='text-success'> <i class='icon-ok'></i><span>{0}</span></li>", mess.ErrorMessage);
+                        //sb.AppendFormat("<li class='Success'> <i class='icon-ok'></i><span>{0}</span></li>", mess.ErrorMessage);
                         sb.Append(one.Core.Utilities.ShowSuccess);
                     }
                     else {
-
-                        sb.AppendFormat("<li class='Error'> <i class='icon-exclamation-sign'></i><span>{0}</span></li>", mess.ErrorMessage);
+                        
+                        sb.AppendFormat("<li class='text-danger'> <i class='icon-exclamation-sign'></i><span>{0}</span></li>", mess.ErrorMessage);
+                        //sb.AppendFormat("<li class='Error'> <i class='icon-exclamation-sign'></i><span>{0}</span></li>", mess.ErrorMessage);
                         sb.Append(one.Core.Utilities.ShowError);
                     }
                 }

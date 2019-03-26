@@ -73,8 +73,10 @@
     <Compile Include="Exception\OneHandleError.cs" />
     <Compile Include="Extension\CultureDisplayName.cs" />
     <Compile Include="FixedData\NetRequestType.cs" />
+    <Compile Include="HtmlHelper\IsSelected.cs" />
     <Compile Include="HtmlHelper\ListBoxHelper.cs" />
     <Compile Include="HtmlHelper\OneValidationSummary.cs" />
+    <Compile Include="HtmlHelper\PageClass.cs" />
     <Compile Include="HtmlHelper\PanelBlock.cs" />
     <Compile Include="ProjectVar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

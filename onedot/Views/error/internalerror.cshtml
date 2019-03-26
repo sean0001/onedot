@@ -1,18 +1,44 @@
-﻿
+﻿@model System.Web.Mvc.HandleErrorInfo
+
 @{
     Layout = null;
+    ViewBag.Title = "Error";
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>internalerror</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Dolphin | @ViewBag.Title</title>
+
 </head>
 <body>
-    <div> 
-        sdfasdfsadf
+    <div class="list-header clearfix">
+        <span>Error</span>
     </div>
+    <div class="list-sfs-holder">
+        <div class="alert alert-error">
+            An unexpected error has occurred. Please contact the system administrator.
+        </div>
+        @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+        {
+            <div>
+                <p>
+                    <b>Exception:</b> @Model.Exception.Message<br />
+                    <b>Controller:</b> @Model.ControllerName<br />
+                    <b>Action:</b> @Model.ActionName
+                </p>
+                <div style="overflow:scroll">
+                    <pre>
+                    @Model.Exception.StackTrace
+                </pre>
+                </div>
+            </div>
+        }
+    </div>
+
 </body>
 </html>

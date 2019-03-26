@@ -9,22 +9,22 @@ namespace one.OneDot.Controllers
     public class errorController : Controller
     {
         // GET: error
-        public ActionResult httperror()
+        public ViewResult httperror(HandleErrorInfo exception)
         {
-            return View();
+            return View(exception);
         }
 
 
-        public ActionResult notfound() {
+        public ViewResult notfound(HandleErrorInfo exception) {
 
-            return View();
+            return View(exception);
         }
 
 
 
-        public ActionResult internalerror() {
+        public ViewResult internalerror(HandleErrorInfo exception) {
 
-            return View();
+            return View(exception);
         
         }
 

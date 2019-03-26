@@ -1,11 +1,11 @@
-﻿@*@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-}*@
+}
 
 @*<h1>测试viewstart</h1>*@
 
 
-@{
+@*@{
     var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
     if (controller == "Home")
     {
@@ -15,4 +15,4 @@
     {
         Layout = "~/Views/Shared/_Blank.cshtml";
     }
-}
+}*@

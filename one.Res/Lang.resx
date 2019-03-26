@@ -444,4 +444,7 @@
   <data name="Pwd" xml:space="preserve">
     <value>密码</value>
   </data>
+  <data name="authentication_nameOrPWDError" xml:space="preserve">
+    <value>登陆失败，用户名或密码不正确！</value>
+  </data>
 </root>

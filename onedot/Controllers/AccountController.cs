@@ -85,8 +85,6 @@ namespace one.OneDot.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            
-
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -104,8 +102,6 @@ namespace one.OneDot.Controllers
                 return View(model);
             }
 
-            
-
             //UserManager<User> userManager = new UserManager<User>(new UserStore());
             
             
@@ -121,7 +117,6 @@ namespace one.OneDot.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-
                     return RedirectToLocal(returnUrl);
 
                 case SignInStatus.LockedOut:
@@ -135,7 +130,7 @@ namespace one.OneDot.Controllers
 
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "无效的登录尝试。");
+                    ModelState.AddModelError("", one.Res.Lang.authentication_nameOrPWDError);
                     return View(model);
             }
         }

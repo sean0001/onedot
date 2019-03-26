@@ -454,4 +454,7 @@
   <data name="Pwd" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="authentication_nameOrPWDError" xml:space="preserve">
+    <value>login fail, user name or password is incorect.</value>
+  </data>
 </root>
