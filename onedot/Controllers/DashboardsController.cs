@@ -6,13 +6,19 @@ using System.Web.Mvc;
 
 namespace one.OneDot.Controllers
 {
+
+    [RouteArea("Admin")]
+    [RoutePrefix("menu")]
+    [Route("{action}")]
+    //[RoutePrefix("ss")]
     public class DashboardsController : Controller
     {
+        [Route("s1")]
         public ActionResult Dashboard_1()
         {
             return View();
         }
-
+        
         public ActionResult Dashboard_2()
         {
             return View();

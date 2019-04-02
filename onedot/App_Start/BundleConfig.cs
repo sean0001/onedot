@@ -9,12 +9,8 @@ namespace one.OneDot
         public static void RegisterBundles(BundleCollection bundles)
         {
 
-
-            //old(bundles);
             inspinia(bundles);
-
-
-
+            //old(bundles);
         }
 
 
@@ -42,8 +38,8 @@ namespace one.OneDot
 
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                       "~/Scripts/s01/jquery-{version}.js",
-                       "~/Scripts/s01/bootstrap.js"
+                       "~/Scripts/jquery-{version}.js",
+                       "~/Scripts/bootstrap.js"
 
 
                        ));
@@ -64,14 +60,14 @@ namespace one.OneDot
 
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/s01/jquery.unobtrusive*",
-                        "~/Scripts/s01/jquery.validate*"));
+                        "~/Scripts/jquery.unobtrusive*",
+                        "~/Scripts/jquery.validate*"));
 
 
             // 使用要用于开发和学习的 Modernizr 的开发版本。然后，当你做好
             // 生产准备时，请使用 http://modernizr.com 上的生成工具来仅选择所需的测试。
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/s01/modernizr-*"));
+                        "~/Scripts/modernizr-*"));
 
 
 
@@ -101,18 +97,32 @@ namespace one.OneDot
                 "~/Content/site.css"
                 ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/s01/jq").Include(
-                "~/Scripts/s01/jquery-{version}.js",
-                "~/Scripts/s01/jquery.validate.js"
+            bundles.Add(new ScriptBundle("~/Scripts/jq").Include(
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery.validate.js"
                   ));
 
 
-            bundles.Add(new ScriptBundle("~/Scripts/s01/extend").Include(
-                "~/Scripts/s01/kendo/2013020918/kendo.all.js",
-                "~/Scripts/s01/kendo/2013020918/kendo.aspnetmvc.js"
+            bundles.Add(new ScriptBundle("~/Scripts/extend").Include(
+                "~/Scripts/kendo/2013020918/kendo.all.js",
+                "~/Scripts/kendo/2013020918/kendo.aspnetmvc.js"
                   ));
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         private static void inspinia(BundleCollection bundles) {

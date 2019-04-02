@@ -114,10 +114,14 @@ namespace one.OneDot.Controllers
                 model.RememberMe, 
                 shouldLockout: true);
 
+            var sss = User.Identity.GetUserName();
+
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                //return RedirectToLocal(returnUrl??"/dashBoard/dash/desktop");
+                //return RedirectToLocal(returnUrl);
+                return RedirectToAction("desktop", "dash",new { area ="dashboard"});
 
                 case SignInStatus.LockedOut:
                     return View("Lockout");

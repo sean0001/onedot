@@ -2,6 +2,17 @@
     ViewBag.Title = "Dashboard v.1";
 }
 
+<div style="margin:3em;">
+    <button type="submit" class="btn12 btn-primary btn-lg " id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">Submit Order</button>
+    <br>
+    <br>
+    <button type="submit" class="btn12 btn-primary btn-lg" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">Submit Order</button>
+</div>
+
+
+
+
+
 <div class="row  border-bottom white-bg dashboard-header">
 
     <div class="col-sm-3">
@@ -425,7 +436,7 @@
                             </div>
 
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -576,39 +587,39 @@
             $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
                 data1, data2
             ],
-                    {
-                        series: {
-                            lines: {
-                                show: false,
-                                fill: true
-                            },
-                            splines: {
-                                show: true,
-                                tension: 0.4,
-                                lineWidth: 1,
-                                fill: 0.4
-                            },
-                            points: {
-                                radius: 0,
-                                show: true
-                            },
-                            shadowSize: 2
+                {
+                    series: {
+                        lines: {
+                            show: false,
+                            fill: true
                         },
-                        grid: {
-                            hoverable: true,
-                            clickable: true,
-                            tickColor: "#d5d5d5",
-                            borderWidth: 1,
-                            color: '#d5d5d5'
+                        splines: {
+                            show: true,
+                            tension: 0.4,
+                            lineWidth: 1,
+                            fill: 0.4
                         },
-                        colors: ["#1ab394", "#464f88"],
-                        xaxis: {
+                        points: {
+                            radius: 0,
+                            show: true
                         },
-                        yaxis: {
-                            ticks: 4
-                        },
-                        tooltip: false
-                    }
+                        shadowSize: 2
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: true,
+                        tickColor: "#d5d5d5",
+                        borderWidth: 1,
+                        color: '#d5d5d5'
+                    },
+                    colors: ["#1ab394", "#464f88"],
+                    xaxis: {
+                    },
+                    yaxis: {
+                        ticks: 4
+                    },
+                    tooltip: false
+                }
             );
 
 
@@ -621,39 +632,39 @@
             $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
                 data1, data2
             ],
-                    {
-                        series: {
-                            lines: {
-                                show: false,
-                                fill: true
-                            },
-                            splines: {
-                                show: true,
-                                tension: 0.4,
-                                lineWidth: 1,
-                                fill: 0.4
-                            },
-                            points: {
-                                radius: 0,
-                                show: true
-                            },
-                            shadowSize: 2
+                {
+                    series: {
+                        lines: {
+                            show: false,
+                            fill: true
                         },
-                        grid: {
-                            hoverable: true,
-                            clickable: true,
-                            tickColor: "#d5d5d5",
-                            borderWidth: 1,
-                            color: '#d5d5d5'
+                        splines: {
+                            show: true,
+                            tension: 0.4,
+                            lineWidth: 1,
+                            fill: 0.4
                         },
-                        colors: ["#1ab394", "#1C84C6"],
-                        xaxis: {
+                        points: {
+                            radius: 0,
+                            show: true
                         },
-                        yaxis: {
-                            ticks: 4
-                        },
-                        tooltip: false
-                    }
+                        shadowSize: 2
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: true,
+                        tickColor: "#d5d5d5",
+                        borderWidth: 1,
+                        color: '#d5d5d5'
+                    },
+                    colors: ["#1ab394", "#1C84C6"],
+                    xaxis: {
+                    },
+                    yaxis: {
+                        ticks: 4
+                    },
+                    tooltip: false
+                }
             );
 
             var doughnutData = {
@@ -698,4 +709,22 @@
 
         });
     </script>
+
+
+
+    <script>
+
+        $('.btn12').on('click', function () {
+            var $this = $(this);
+            $this.button('loading');
+            setTimeout(function () {
+                $this.button('reset');
+                
+            }, 3000);
+        });
+
+    </script>
+
+
+
 }

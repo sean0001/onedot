@@ -13,18 +13,17 @@ namespace ConApp
         public int? Id { get; set; } = null;
         public string Name { get; } = "yang";
         public string Career { get; } = "programer";
-
-
     }
+
+
 
     class Program
     {
-        private static int? age  = null;
-        private static string name = "";
-        private static int height = 123_232;
 
         static void Main(string[] args)
         {
+
+            Console.WriteLine("start...");
             Test();
             Console.WriteLine("Test End!");
             Console.ReadLine();
@@ -32,6 +31,8 @@ namespace ConApp
 
         static async void Test()
         {
+
+            Console.WriteLine(" await Test1();");
             await Test1();
             Console.WriteLine("Test1 End!");
         }
