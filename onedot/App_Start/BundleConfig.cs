@@ -35,15 +35,10 @@ namespace one.OneDot
             //          "~/Content/bootstrap.css",
             //          "~/Content/site.css"));
 
-
-
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                        "~/Scripts/jquery-{version}.js",
                        "~/Scripts/bootstrap.js"
-
-
                        ));
-
 
             //bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
             //            "~/Scripts/s01/jquery-ui-{version}.js"));
